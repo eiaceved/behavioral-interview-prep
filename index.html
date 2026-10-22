@@ -7,12 +7,12 @@
 /* Layout: one reading column (max 820px) under a sticky step rail. Every step runs the same loop:
    interviewer prompt -> your move -> reveal a strong answer. Exhibits sit inside the column like workpapers. */
 :root{
-  --bg:#f2f5f6; --surface:#ffffff; --surface-2:#e8eef0; --fg:#13202a; --fg-2:#44525d; --muted:#6c7a84; --line:#d4dce0;
-  --accent:#0d6b61; --accent-ink:#0a5a51; --accent-soft:#dbeeea; --on-accent:#ffffff;
-  --s1:#2a78d6; --s2:#eb6834; --grid:#e2e8ea; --axis:#b6c1c7;
+  --bg:#f7f0ee; --surface:#ffffff; --surface-2:#f2e4e1; --fg:#241418; --fg-2:#55464a; --muted:#8a7579; --line:#e3cfcb;
+  --accent:#a3241f; --accent-ink:#8c1f1b; --accent-soft:#f8e2df; --on-accent:#ffffff;
+  --s1:#2a78d6; --s2:#eb6834; --grid:#ecdfdc; --axis:#c4aea9;
   --good:#0ca30c; --good-ink:#006300; --crit:#d03b3b; --crit-ink:#ad2828;
   --h1:#e6f0fc; --h2:#b7d3f6; --h3:#6da7ec; --h4:#2a78d6; --h5:#104281;
-  --dot:#eb6834; --dot-ink:#111111; --tip-bg:#13202a; --tip-fg:#ffffff;
+  --dot:#eb6834; --dot-ink:#111111; --tip-bg:#241418; --tip-fg:#ffffff;
   --display:"Archivo","Arial Narrow",system-ui,sans-serif;
   --body:"Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
@@ -20,22 +20,22 @@
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#0d1215; --surface:#151c20; --surface-2:#1b252a; --fg:#e5ecef; --fg-2:#a8b4bb; --muted:#7c8992; --line:#29343a;
-    --accent:#4cc2b1; --accent-ink:#72d4c6; --accent-soft:#11302c; --on-accent:#06201c;
-    --s1:#3987e5; --s2:#d95926; --grid:#222c32; --axis:#3a464d;
+    --bg:#160d0f; --surface:#1e1315; --surface-2:#271a1c; --fg:#f0e4e2; --fg-2:#c2a9a6; --muted:#9c8481; --line:#3a2629;
+    --accent:#e28079; --accent-ink:#eba9a2; --accent-soft:#3a1b1d; --on-accent:#2a0e10;
+    --s1:#3987e5; --s2:#d95926; --grid:#2c1c1e; --axis:#463033;
     --good:#0ca30c; --good-ink:#3dc43d; --crit:#d03b3b; --crit-ink:#ff8484;
     --h1:#1a2531; --h2:#1c3c63; --h3:#22599b; --h4:#3987e5; --h5:#86b6ef;
-    --dot:#f07a45; --dot-ink:#111111; --tip-bg:#e5ecef; --tip-fg:#0d1215;
+    --dot:#f07a45; --dot-ink:#111111; --tip-bg:#f0e4e2; --tip-fg:#160d0f;
     color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#0d1215; --surface:#151c20; --surface-2:#1b252a; --fg:#e5ecef; --fg-2:#a8b4bb; --muted:#7c8992; --line:#29343a;
-  --accent:#4cc2b1; --accent-ink:#72d4c6; --accent-soft:#11302c; --on-accent:#06201c;
-  --s1:#3987e5; --s2:#d95926; --grid:#222c32; --axis:#3a464d;
+  --bg:#160d0f; --surface:#1e1315; --surface-2:#271a1c; --fg:#f0e4e2; --fg-2:#c2a9a6; --muted:#9c8481; --line:#3a2629;
+  --accent:#e28079; --accent-ink:#eba9a2; --accent-soft:#3a1b1d; --on-accent:#2a0e10;
+  --s1:#3987e5; --s2:#d95926; --grid:#2c1c1e; --axis:#463033;
   --good:#0ca30c; --good-ink:#3dc43d; --crit:#d03b3b; --crit-ink:#ff8484;
   --h1:#1a2531; --h2:#1c3c63; --h3:#22599b; --h4:#3987e5; --h5:#86b6ef;
-  --dot:#f07a45; --dot-ink:#111111; --tip-bg:#e5ecef; --tip-fg:#0d1215;
+  --dot:#f07a45; --dot-ink:#111111; --tip-bg:#f0e4e2; --tip-fg:#160d0f;
   color-scheme:dark;
 }
 *{box-sizing:border-box}
