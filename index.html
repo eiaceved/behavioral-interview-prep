@@ -1,0 +1,1108 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Situational Judgment Test</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<style>
+/* Layout: one reading column (max 820px) under a sticky step rail. Every step runs the same loop:
+   interviewer prompt -> your move -> reveal a strong answer. Exhibits sit inside the column like workpapers. */
+:root{
+  --bg:#f2f5f6; --surface:#ffffff; --surface-2:#e8eef0; --fg:#13202a; --fg-2:#44525d; --muted:#6c7a84; --line:#d4dce0;
+  --accent:#0d6b61; --accent-ink:#0a5a51; --accent-soft:#dbeeea; --on-accent:#ffffff;
+  --s1:#2a78d6; --s2:#eb6834; --grid:#e2e8ea; --axis:#b6c1c7;
+  --good:#0ca30c; --good-ink:#006300; --crit:#d03b3b; --crit-ink:#ad2828;
+  --h1:#e6f0fc; --h2:#b7d3f6; --h3:#6da7ec; --h4:#2a78d6; --h5:#104281;
+  --dot:#eb6834; --dot-ink:#111111; --tip-bg:#13202a; --tip-fg:#ffffff;
+  --display:"Archivo","Arial Narrow",system-ui,sans-serif;
+  --body:"Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d1215; --surface:#151c20; --surface-2:#1b252a; --fg:#e5ecef; --fg-2:#a8b4bb; --muted:#7c8992; --line:#29343a;
+    --accent:#4cc2b1; --accent-ink:#72d4c6; --accent-soft:#11302c; --on-accent:#06201c;
+    --s1:#3987e5; --s2:#d95926; --grid:#222c32; --axis:#3a464d;
+    --good:#0ca30c; --good-ink:#3dc43d; --crit:#d03b3b; --crit-ink:#ff8484;
+    --h1:#1a2531; --h2:#1c3c63; --h3:#22599b; --h4:#3987e5; --h5:#86b6ef;
+    --dot:#f07a45; --dot-ink:#111111; --tip-bg:#e5ecef; --tip-fg:#0d1215;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d1215; --surface:#151c20; --surface-2:#1b252a; --fg:#e5ecef; --fg-2:#a8b4bb; --muted:#7c8992; --line:#29343a;
+  --accent:#4cc2b1; --accent-ink:#72d4c6; --accent-soft:#11302c; --on-accent:#06201c;
+  --s1:#3987e5; --s2:#d95926; --grid:#222c32; --axis:#3a464d;
+  --good:#0ca30c; --good-ink:#3dc43d; --crit:#d03b3b; --crit-ink:#ff8484;
+  --h1:#1a2531; --h2:#1c3c63; --h3:#22599b; --h4:#3987e5; --h5:#86b6ef;
+  --dot:#f07a45; --dot-ink:#111111; --tip-bg:#e5ecef; --tip-fg:#0d1215;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:17px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding-inline:20px}
+h1,h2,h3{font-family:var(--display);font-stretch:86%;text-wrap:balance;margin:0;letter-spacing:-.01em}
+p{margin:0 0 .8em}
+a{color:var(--accent-ink)}
+b,strong{font-weight:700}
+.eyebrow,.lbl,.who{font:500 11px/1.4 var(--mono);letter-spacing:.09em;text-transform:uppercase}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+.tnum{font-variant-numeric:tabular-nums}
+
+/* rail */
+.rail{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.rail-in{max-width:820px;margin:0 auto;padding:8px 20px;display:flex;gap:10px;align-items:center}
+.chips{display:flex;gap:4px;overflow-x:auto;flex:1;min-width:0;scrollbar-width:none;padding-block:2px}
+.chips::-webkit-scrollbar{display:none}
+.chips a{font:500 12px var(--mono);padding:5px 9px;border-radius:999px;color:var(--fg-2);white-space:nowrap;text-decoration:none}
+.chips a:hover{background:var(--surface-2)}
+.chips a.on{background:var(--fg);color:var(--bg)}
+.speed{display:flex;align-items:center;gap:6px;font:500 11px var(--mono);color:var(--muted);flex:none}
+.speed select{font:500 12px var(--mono);background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:3px 4px}
+
+/* hero */
+.hero{padding-block:56px 40px}
+.hero .eyebrow{color:var(--accent-ink);margin-bottom:14px}
+.hero h1{font-size:clamp(40px,8vw,64px);line-height:1;font-weight:800;font-stretch:80%}
+.lede{font-size:21px;line-height:1.5;color:var(--fg-2);max-width:36em;margin-top:18px}
+.how{list-style:none;padding:0;margin:26px 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.how li{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;font-size:15px;line-height:1.4;counter-increment:how}
+.how li::before{content:counter(how);display:block;font:600 12px var(--mono);color:var(--accent-ink);margin-bottom:4px}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+
+/* steps */
+.step{padding-block:52px;border-top:1px solid var(--line);scroll-margin-top:56px}
+.sh{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.idx{font:600 13px var(--mono);color:var(--accent-ink)}
+.sh h2{font-size:clamp(26px,4.4vw,32px);line-height:1.15;font-weight:750}
+.sh .listen{margin-left:auto}
+.sub{color:var(--fg-2);margin-top:8px;max-width:40em}
+
+.btn{font:600 14px/1.2 var(--body);border-radius:8px;padding:9px 14px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer;display:inline-flex;align-items:center;gap:7px;text-decoration:none}
+.btn:hover{border-color:var(--muted)}
+.btn.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.btn.primary:hover{filter:brightness(1.07)}
+.btn.small{font-size:13px;padding:6px 10px}
+.btn[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.btn svg{width:14px;height:14px;fill:currentColor;flex:none}
+
+.iv{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;margin-top:22px}
+.who{color:var(--muted);margin-bottom:8px}
+.iv p{font-size:19px;line-height:1.55}
+.iv p:last-child{margin-bottom:0}
+
+.move{display:flex;gap:12px 16px;align-items:center;flex-wrap:wrap;margin-top:18px;padding-block:14px;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line)}
+.move .lbl{color:var(--accent-ink);flex:none}
+.move p{margin:0;flex:1 1 260px;min-width:0;font-weight:600}
+.move .acts{display:flex;gap:8px;flex-wrap:wrap}
+
+.ans{background:var(--accent-soft);border-radius:var(--r);padding:20px 22px;margin-top:14px}
+.ans .who{color:var(--accent-ink)}
+.ans h3{font-size:19px;margin:18px 0 8px;font-weight:700}
+.ans h3:first-of-type{margin-top:4px}
+.ans ul{margin:0 0 .6em;padding-left:1.2em}
+.ans li{margin-bottom:.35em}
+.script{font-size:18px;line-height:1.6}
+.script p{margin-bottom:.7em}
+.note{font-size:15px;color:var(--fg-2)}
+
+/* facts strip */
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-top:16px}
+.facts div{background:var(--surface);padding:12px 14px;min-width:0}
+.facts .k{font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.facts .v{font:700 22px/1.2 var(--display);font-stretch:86%;margin-top:4px}
+.facts .d{font-size:13px;color:var(--fg-2);line-height:1.35;margin-top:2px}
+
+/* primer */
+.def{font:600 clamp(21px,3.4vw,26px)/1.35 var(--display);font-stretch:92%;margin-top:22px;max-width:30em}
+.split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:22px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;min-width:0}
+.panel h3{font-size:19px;font-weight:700}
+.panel .tag{font:500 11px var(--mono);color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin:2px 0 8px}
+.panel ul{margin:0;padding-left:1.1em;font-size:16px}
+.panel li{margin-bottom:.3em}
+.cycle{list-style:none;padding:0;margin:14px 0 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
+.cycle li{position:relative;background:var(--surface-2);border-radius:8px;padding:12px 12px 10px;min-width:0}
+.cycle li b{display:block;font:700 17px var(--display);font-stretch:88%}
+.cycle li span{font-size:14px;color:var(--fg-2);line-height:1.35;display:block;margin-top:2px}
+.cycle li:not(:last-child)::after{content:"";position:absolute;right:-17px;top:50%;width:12px;height:12px;border-top:2px solid var(--muted);border-right:2px solid var(--muted);transform:translateY(-50%) rotate(45deg)}
+.cycle-note{font:500 12px var(--mono);color:var(--muted);margin-top:10px}
+.vocab{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px}
+.term{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px;min-width:0}
+.term b{display:block;font:700 16px var(--display);font-stretch:90%;margin-bottom:3px}
+.term p{margin:0;font-size:15px;line-height:1.45;color:var(--fg-2)}
+.h-sec{font:500 11px var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-top:30px}
+
+/* qa list */
+.qa{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.qa li{background:var(--surface);border-radius:8px;padding:12px 14px}
+.qa .q{font-weight:700}
+.qa .a{color:var(--fg-2);margin-top:2px}
+.qa .a::before{content:"Interviewer: ";font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+
+/* framework tree */
+.tree{margin-top:6px}
+.root{background:var(--fg);color:var(--bg);border-radius:8px;padding:12px 16px;font:700 18px/1.3 var(--display);font-stretch:90%;text-align:center;position:relative}
+.root::after{content:"";position:absolute;left:50%;bottom:-16px;width:2px;height:16px;background:var(--muted)}
+.branches{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:16px;padding-top:14px;border-top:2px solid var(--muted)}
+.branch{background:var(--surface);border-radius:8px;padding:12px 13px;min-width:0}
+.branch .n{font:600 12px var(--mono);color:var(--accent-ink)}
+.branch b{display:block;font:700 16px/1.25 var(--display);font-stretch:90%;margin:2px 0 6px}
+.branch ul{margin:0;padding-left:1.05em;font-size:14.5px;line-height:1.4}
+.branch li{margin-bottom:.3em}
+
+/* exhibits */
+.ex{margin:22px 0 0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 18px 14px}
+.ex-h{display:flex;justify-content:space-between;align-items:baseline;gap:6px 12px;flex-wrap:wrap}
+.ex-t{font:700 18px var(--display);font-stretch:88%}
+.ex-ref{font:500 12px var(--mono);color:var(--muted)}
+.ex-s{font-size:14px;color:var(--fg-2);margin-top:2px}
+.ex figcaption,.src{font:400 12px/1.45 var(--mono);color:var(--muted);margin-top:12px}
+.multiples{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}
+.mini{border:1px solid var(--grid);border-radius:8px;padding:10px 10px 4px;min-width:0}
+.mini .nm{font-weight:700;font-size:14.5px;line-height:1.25;min-height:2.5em}
+.mini .ch{font:500 12px var(--mono);color:var(--fg-2)}
+.mini svg{display:block;width:100%;height:auto;margin-top:4px}
+.tblwrap{overflow-x:auto;margin-top:12px}
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--grid);white-space:nowrap}
+th{font:500 11px var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+
+.hbar{margin-top:16px}
+.hrow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:4px 14px;align-items:center;padding-block:9px;border-bottom:1px solid var(--grid)}
+.hrow:last-of-type{border-bottom:0}
+.hlab b{display:block;font-size:15px;line-height:1.3}
+.hlab span{font-size:13px;color:var(--fg-2);line-height:1.3;display:block}
+.track{position:relative;height:26px}
+.bar{position:absolute;left:0;top:5px;height:16px;border-radius:0 4px 4px 0;background:var(--s1);min-width:2px}
+.bar.b2{background:var(--s2)}
+.bval{position:absolute;top:2px;font:600 13px var(--mono);color:var(--fg);white-space:nowrap;padding-left:6px}
+.tol{position:absolute;top:-4px;bottom:-4px;width:0;border-left:1.5px solid var(--fg-2)}
+.axis{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:14px}
+.ticks{position:relative;height:18px;font:500 11px var(--mono);color:var(--muted);border-top:1px solid var(--axis)}
+.ticks span{position:absolute;top:3px;transform:translateX(-50%)}
+.ticks span:first-child{transform:none}
+.ticks span:last-child{transform:translateX(-100%)}
+.status{font:600 12px var(--mono);display:inline-flex;gap:5px;align-items:center;margin-top:3px}
+.status.bad{color:var(--crit-ink)} .status.ok{color:var(--good-ink)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:14px;color:var(--fg-2);margin-top:10px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.tolnote{font:500 12px var(--mono);color:var(--fg-2);margin-top:8px}
+
+/* given table + calc steps */
+.given{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-top:16px}
+.given div{background:var(--surface);padding:11px 13px;min-width:0}
+.given .k{font-size:13px;color:var(--fg-2);line-height:1.3}
+.given .v{font:700 20px/1.2 var(--display);font-stretch:88%;margin-top:3px}
+.calc{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.calc li{background:var(--surface);border-radius:8px;padding:12px 14px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 14px;align-items:center}
+.calc .t{font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);grid-column:1/-1}
+.calc .f{font-size:16px;min-width:0}
+.calc .r{font:700 20px var(--display);font-stretch:88%;text-align:right;white-space:nowrap}
+.stepper .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chipset{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chipset span{font:500 12px var(--mono);background:var(--surface);border-radius:6px;padding:4px 8px;color:var(--fg-2)}
+.chipset b{color:var(--fg)}
+
+/* heat map */
+.heat{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:18px;align-items:start;margin-top:12px}
+.heat svg{width:100%;height:auto;display:block}
+.heat svg text{font-family:var(--mono)}
+.reg{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+.reg li{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;font-size:14.5px;line-height:1.3;padding-block:6px;border-bottom:1px solid var(--grid)}
+.reg .id{width:28px;height:28px;border-radius:50%;background:var(--dot);color:var(--dot-ink);font:600 11px var(--mono);display:grid;place-items:center}
+.reg .sc{font:600 13px var(--mono);color:var(--fg-2);text-align:right;white-space:nowrap}
+.ramp{display:flex;align-items:center;gap:6px;font:500 11px var(--mono);color:var(--muted);margin-top:10px}
+.ramp i{width:22px;height:10px;display:inline-block;border-radius:2px}
+
+/* roadmap */
+.road{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:8px}
+.phase{background:var(--surface);border-radius:8px;padding:12px 14px;min-width:0}
+.phase .d{font:600 12px var(--mono);color:var(--accent-ink)}
+.phase b{display:block;font:700 18px var(--display);font-stretch:88%;margin:2px 0 6px}
+.phase ul{margin:0;padding-left:1.05em;font-size:15px;line-height:1.4}
+.phase li{margin-bottom:.35em}
+.struct{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 12px}
+.struct span{font:600 12px var(--mono);padding:4px 9px;border-radius:999px;background:var(--surface);color:var(--fg)}
+
+/* drivers */
+.drivers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:6px}
+.drivers div{background:var(--surface);border-radius:8px;padding:11px 13px;min-width:0}
+.drivers b{display:block;font:700 16px var(--display);font-stretch:90%}
+.drivers p{margin:2px 0 0;font-size:15px;color:var(--fg-2);line-height:1.45}
+.eq{font:600 15px var(--mono);background:var(--surface);border-radius:8px;padding:10px 14px;margin:6px 0 12px;overflow-x:auto}
+.drill{margin-top:34px}
+.drill h3{font-size:22px;font-weight:750}
+
+/* multiple choice */
+.mc{margin-top:20px}
+.mc-head{display:flex;gap:10px;align-items:flex-start}
+.stem{font-weight:700;font-size:18px;line-height:1.45;margin:0 0 10px;flex:1;min-width:0}
+.opts{display:grid;gap:8px}
+.opt{text-align:left;display:flex;gap:10px;align-items:flex-start;padding:11px 14px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg);font:inherit;font-size:16px;line-height:1.45;cursor:pointer;width:100%}
+.opt:hover:not([disabled]){border-color:var(--muted)}
+.opt[disabled]{cursor:default}
+.opt .L{font:600 13px/1.6 var(--mono);color:var(--muted);flex:none}
+.opt .x{flex:1;min-width:0}
+.opt .tag{font:600 12px/1.7 var(--mono);white-space:nowrap;flex:none}
+.opt.right{border-color:var(--good);background:color-mix(in srgb,var(--good) 10%,var(--surface))}
+.opt.right .tag{color:var(--good-ink)}
+.opt.wrong{border-color:var(--crit);background:color-mix(in srgb,var(--crit) 9%,var(--surface))}
+.opt.wrong .tag{color:var(--crit-ink)}
+.why{margin-top:10px;padding:13px 16px;border-radius:8px;background:var(--surface-2);font-size:16px}
+.why p:last-child{margin-bottom:0}
+.test .mc{border-top:1px solid var(--line);padding-top:20px;margin-top:22px}
+.test .mc:first-of-type{border-top:0;padding-top:0}
+.qn{font:600 13px var(--mono);color:var(--accent-ink);display:block;margin-bottom:2px}
+.scorebar{position:sticky;top:calc(env(safe-area-inset-top,0px) + 50px);z-index:5;display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:var(--bg);padding-block:10px;margin-top:14px;border-bottom:1px solid var(--line)}
+.score{font:700 22px var(--display);font-stretch:86%}
+.score small{font:500 12px var(--mono);color:var(--muted);margin-left:6px}
+.done{background:var(--accent-soft);border-radius:var(--r);padding:16px 18px;margin-top:24px}
+
+footer{padding-block:40px 64px;border-top:1px solid var(--line);font-size:14px;color:var(--fg-2)}
+
+#tip{position:fixed;z-index:50;pointer-events:none;background:var(--tip-bg);color:var(--tip-fg);font:500 12px/1.4 var(--mono);padding:6px 9px;border-radius:6px;max-width:260px;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+
+@media (max-width:760px){
+  .branches{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .heat{grid-template-columns:minmax(0,1fr)}
+  .road{grid-template-columns:minmax(0,1fr)}
+  .multiples{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:600px){
+  body{font-size:16px}
+  .how{grid-template-columns:minmax(0,1fr)}
+  .split,.vocab,.drivers{grid-template-columns:minmax(0,1fr)}
+  .cycle{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cycle li:nth-child(2)::after{display:none}
+  .given{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hrow,.axis{grid-template-columns:minmax(0,1fr)}
+  .axis>div:first-child{display:none}
+  .iv p{font-size:18px}
+  .speed span{display:none}
+}
+@media (max-width:420px){
+  .branches{grid-template-columns:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:no-preference){
+  .ans:not([hidden]),.why:not([hidden]),.calc li:not([hidden]){animation:rise .28s ease-out}
+  @keyframes rise{from{transform:translateY(4px);opacity:.4}to{transform:none;opacity:1}}
+  html{scroll-behavior:smooth}
+}
+[hidden]:not([hidden=until-found i]){display:none!important}
+/* scoring register */
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.seg{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0 4px}
+.scorer li{grid-template-columns:auto minmax(0,1fr) auto}
+.scorer .nm{min-width:0}
+.pick{display:flex;gap:6px;align-items:center}
+.pick select{font:500 13px var(--mono);background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:4px 4px;min-width:44px}
+.pick .sc{min-width:34px}
+.reg .w{display:block;font-size:13px;color:var(--fg-2);margin-top:2px;line-height:1.35}
+.reg .nm b{font-weight:600}
+.mytop{font:600 15px/1.4 var(--body);margin:12px 0 0;color:var(--fg)}
+.mapnote{font:500 12px var(--mono);color:var(--fg-2);margin:8px 0 0}
+.bar.b3{background:var(--fg-2)}
+/* voice menu */
+.voicebar{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;margin-top:22px;padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.voicebar label{font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.voicebar select{flex:1 1 220px;min-width:0;max-width:100%;font:500 13px var(--mono);background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:6px 6px}
+.vhint{flex-basis:100%;margin:0;font-size:14px;line-height:1.45;color:var(--fg-2)}
+@media (max-width:600px){.given>div:last-child:nth-child(odd){grid-column:1/-1}}
+@media (max-width:420px){
+  .scorer li{grid-template-columns:auto minmax(0,1fr)}
+  .scorer .pick{grid-column:2}
+}
+</style>
+<style>
+/* calculators */
+.calcbox{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin-top:22px}
+.calcbox h3{font-size:19px;font-weight:700;margin:0 0 4px}
+.calcbox .sub{margin-top:2px;font-size:15px}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px 14px;margin-top:12px}
+.cgrid label{display:flex;flex-direction:column;gap:4px;font-size:14px;line-height:1.3;color:var(--fg-2);min-width:0}
+.cgrid input{font:500 15px var(--mono);background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:7px 8px;width:100%;min-width:0}
+.cout{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:14px}
+.cout div{background:var(--surface-2);border-radius:8px;padding:10px 12px;min-width:0}
+.cout .k{font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.cout .v{font:700 22px/1.2 var(--display);font-stretch:86%;margin-top:3px}
+.cnote{font-size:15px;line-height:1.5;color:var(--fg-2);margin:12px 0 0}
+.cbtns{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.gb{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}
+.gb .ans{margin-top:0}
+@media (max-width:600px){.gb{grid-template-columns:minmax(0,1fr)}}
+.reps{display:grid;gap:12px;margin-top:14px}
+.rep{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px}
+.rep .rq{font-weight:700;font-size:17px;margin:0 0 8px}
+.rep .acts{display:flex;gap:8px;flex-wrap:wrap}
+.rep .ans{margin-top:12px}
+.tw th,.tw td{white-space:normal}
+@media (max-width:600px){.tw th,.tw td{padding:6px 5px;font-size:13.5px}.tw th{font-size:10px}}
+</style>
+<style>
+.sjcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;margin-top:20px}
+.sjgroup{margin-top:16px}
+.sjgroup:first-of-type{margin-top:4px}
+.sjlbl{font:500 11px/1.4 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+.sjseg{display:flex;gap:6px;flex-wrap:wrap}
+.sjseg select{font:600 13px var(--body);background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:6px 8px}
+.sjhint{font-size:14px;color:var(--fg-2);margin:6px 0 0}
+.sjstart{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:18px}
+.sjlast{font:500 13px var(--mono);color:var(--fg-2)}
+.sjhead{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;font:500 12px var(--mono);color:var(--muted)}
+.sjbar{height:6px;background:var(--surface-2);border-radius:99px;margin:10px 0 16px;overflow:hidden}
+.sjbar i{display:block;height:100%;background:var(--accent);border-radius:99px;transition:width .2s}
+.sjtag{font:600 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--accent-ink)}
+.sjs{font-size:19px;line-height:1.55;margin:4px 0 10px}
+.sjins{font-weight:700;font-size:15px;margin:0 0 10px;color:var(--fg)}
+.sjopts{display:grid;gap:8px}
+.sjopt{display:flex;gap:10px;align-items:flex-start;text-align:left;width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg);font:inherit;font-size:16px;line-height:1.45;cursor:pointer}
+.sjopt:hover:not([disabled]){border-color:var(--muted)}
+.sjopt .L{font:600 13px/1.6 var(--mono);color:var(--muted);flex:none}
+.sjopt .x{flex:1;min-width:0}
+.sjopt .bd{flex:none;font:600 12px/1.6 var(--mono);padding:1px 8px;border-radius:99px;background:var(--fg);color:var(--bg)}
+.sjopt.on{border-color:var(--accent);background:var(--accent-soft)}
+.sjopt[disabled]{cursor:default}
+.sjctl{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;align-items:center}
+.sjctl .sp{flex:1}
+.sjfb{margin-top:14px;padding:14px 16px;border-radius:8px;background:var(--surface-2)}
+.sjfb ol{margin:6px 0 8px;padding-left:1.3em}
+.sjfb li{margin-bottom:4px}
+.sjfb .you{font:600 12px var(--mono);color:var(--accent-ink);white-space:nowrap}
+.sjpts{font:700 14px var(--mono)}
+.sjbig{font:800 64px/1 var(--display);font-stretch:80%;margin:6px 0}
+.sjband{font:700 20px var(--display);font-stretch:88%}
+.sjstats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-top:16px}
+.sjstats div{background:var(--surface);padding:10px 12px;min-width:0}
+.sjstats .k{font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.sjstats .v{font:700 20px var(--display);font-stretch:88%;margin-top:2px}
+.sjrev{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:10px}
+.sjrev>li{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.sjrev .top{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+.sjrev .sc{font-size:16px;margin:4px 0 6px}
+.sjrev .w{font-size:15px;color:var(--fg-2);margin:6px 0 0}
+.sjhist{list-style:none;padding:0;margin:8px 0 0;font:500 13px var(--mono);color:var(--fg-2)}
+.sjhist li{padding:4px 0;border-bottom:1px solid var(--grid)}
+@media (max-width:600px){.sjcard{padding:16px}.sjs{font-size:17px}.sjstats .v{font-size:17px}.sjbig{font-size:52px}}
+</style>
+
+<nav class="rail" aria-label="Sections">
+  <div class="rail-in">
+    <div class="chips" id="chips">
+      <a href="#how">How it works</a><a href="#test">Take the test</a><a href="#results">Results</a><a href="#tips">What they look for</a><a href="#behavioral">Behavioral</a>
+    </div>
+    <label class="speed" for="rate"><span>Speed</span>
+      <select id="rate" aria-label="Read-aloud speed">
+        <option value="0.9">0.9×</option><option value="1" selected>1×</option><option value="1.15">1.15×</option><option value="1.3">1.3×</option>
+      </select>
+    </label>
+  </div>
+</nav>
+
+<main>
+<header class="hero wrap">
+  <p class="eyebrow">Situational judgment practice · Big 4 style · 50 scenarios</p>
+  <h1>Situational Judgment Test</h1>
+  <p class="lede" data-say>The behavioral assessment many firms send after you apply: workplace scenarios where you rank the possible responses. Pick a format, answer up to 50 scenarios, and get a score with a breakdown by competency.</p>
+  <ol class="how">
+    <li><b>Choose a format</b>: top two in order, rank all four, or most and least effective.</li>
+    <li><b>Answer the scenarios</b> as a strong first-year associate would.</li>
+    <li><b>Get your rating</b>, then review every answer with the reasoning.</li>
+  </ol>
+  <div class="hero-actions">
+    <a class="btn primary" href="#test">Start the test</a>
+    <a class="btn" href="#how">How scoring works</a>
+    <a class="btn" href="#tips">What firms look for</a>
+    <a class="btn" href="#behavioral">Behavioral answers</a>
+  </div>
+  <div class="voicebar">
+    <label for="voicePick">Read-aloud voice</label>
+    <select id="voicePick"></select>
+    <button class="btn small" type="button" id="voiceTest">Try it</button>
+    <p class="vhint">Sounds robotic? Pick a voice marked "natural." For the most human voices, open this page in Microsoft Edge, which includes free natural voices. On a Mac, you can also download a Premium voice in System Settings › Accessibility › Spoken Content › System voice › Manage Voices.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- 01 HOW IT WORKS -->
+<section class="step" id="how">
+  <div class="sh"><span class="idx">01</span><h2>How these tests work</h2><button class="btn small listen" type="button">Listen</button></div>
+  <p class="def" data-say>A situational judgment test shows you a realistic work scenario and several possible responses. You judge which responses are most and least effective. There's no trick or right personality; firms compare your choices with how their best people would act, based on the firm's values.</p>
+  <div class="split">
+    <div class="panel">
+      <h3>Common formats</h3>
+      <p class="tag">You'll see one or more of these</p>
+      <ul data-say>
+        <li><b>Rank:</b> order the responses from most to least effective.</li>
+        <li><b>Most and least:</b> pick the best response and the worst one.</li>
+        <li><b>Top choices in order:</b> pick the best, then the second best.</li>
+        <li><b>Rate:</b> score each response on its own, from very effective to very ineffective.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3>How this page scores you</h3>
+      <p class="tag">Close answers earn partial credit</p>
+      <ul data-say>
+        <li>Every scenario has an expert ranking of all four responses.</li>
+        <li>Matching a position earns full points. Being one place off earns partial points.</li>
+        <li>Your total becomes a percentage, with a breakdown for eight competencies.</li>
+        <li>Most lost points come from the middle positions, not the best or worst.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="h-sec">Six rules of thumb</p>
+  <div class="vocab">
+    <div class="term" data-say><b>1. Fix it and tell the right person</b><p>The best responses solve the problem and keep your senior or manager informed.</p></div>
+    <div class="term" data-say><b>2. Go through your team</b><p>Talk to your senior before the client, and to the person before going over their head.</p></div>
+    <div class="term" data-say><b>3. Integrity comes first</b><p>Accuracy, confidentiality, and honesty beat speed and pleasing people, every time.</p></div>
+    <div class="term" data-say><b>4. Avoid the extremes</b><p>Doing nothing and overreacting are usually the two worst options.</p></div>
+    <div class="term" data-say><b>5. Own your part</b><p>Admit mistakes, flag risks early, and ask for help before a deadline slips.</p></div>
+    <div class="term" data-say><b>6. Act like a great first-year</b><p>Helpful and proactive, but within your role. Big decisions belong to your manager.</p></div>
+  </div>
+</section>
+
+<!-- 02 TEST -->
+<section class="step" id="test">
+  <div class="sh"><span class="idx">02</span><h2>Take the test</h2></div>
+  <div class="sjcard" id="sj-setup">
+    <div class="sjgroup">
+      <p class="sjlbl">Format</p>
+      <div class="sjseg" role="group" aria-label="Format">
+        <button class="btn small" type="button" data-fmt="top2" aria-pressed="true">Top two in order</button>
+        <button class="btn small" type="button" data-fmt="rank" aria-pressed="false">Rank all four</button>
+        <button class="btn small" type="button" data-fmt="ml" aria-pressed="false">Most and least</button>
+      </div>
+      <p class="sjhint" id="sj-fmthint"></p>
+    </div>
+    <div class="sjgroup">
+      <p class="sjlbl">Length</p>
+      <div class="sjseg" role="group" aria-label="Length">
+        <button class="btn small" type="button" data-len="all" aria-pressed="true">All 50</button>
+        <button class="btn small" type="button" data-len="quick" aria-pressed="false">Quick 20</button>
+        <button class="btn small" type="button" data-len="comp" aria-pressed="false">One competency</button>
+        <select id="sj-comp" aria-label="Competency" hidden></select>
+      </div>
+    </div>
+    <div class="sjgroup">
+      <p class="sjlbl">Feedback</p>
+      <div class="sjseg" role="group" aria-label="Feedback">
+        <button class="btn small" type="button" data-mode="test" aria-pressed="true">Test mode: results at the end</button>
+        <button class="btn small" type="button" data-mode="practice" aria-pressed="false">Practice mode: reasoning after each</button>
+      </div>
+    </div>
+    <div class="sjstart">
+      <button class="btn primary" type="button" id="sj-go">Start</button>
+      <span class="sjlast" id="sj-last"></span>
+    </div>
+  </div>
+
+  <div class="sjcard mc" id="sj-q" hidden>
+    <div class="sjhead"><span id="sj-count"></span><span id="sj-time">0:00</span></div>
+    <div class="sjbar"><i id="sj-prog" style="width:0%"></i></div>
+    <p class="sjtag" id="sj-tag" hidden></p>
+    <p class="sjs" id="sj-s" data-say></p>
+    <p class="sjins" id="sj-ins"></p>
+    <div class="sjopts" id="sj-opts"></div>
+    <div class="sjctl">
+      <button class="btn small qlisten" type="button">Listen</button>
+      <button class="btn small" type="button" id="sj-clear">Clear</button>
+      <span class="sp"></span>
+      <button class="btn small" type="button" id="sj-quit">End test</button>
+      <button class="btn primary small" type="button" id="sj-next" disabled>Next</button>
+    </div>
+    <div class="sjfb" id="sj-fb" hidden></div>
+  </div>
+</section>
+
+<!-- 03 RESULTS -->
+<section class="step" id="results">
+  <div class="sh"><span class="idx">03</span><h2>Results</h2></div>
+  <p class="sub" id="sj-none">Finish a test to see your score here.</p>
+  <div id="sj-res" hidden>
+    <div class="sjcard">
+      <p class="sjlbl">Your score</p>
+      <p class="sjbig tnum" id="sj-pct"></p>
+      <p class="sjband" id="sj-band"></p>
+      <p class="sjhint" id="sj-bandtxt"></p>
+      <div class="sjstats">
+        <div><div class="k">Points</div><div class="v tnum" id="sj-pts"></div></div>
+        <div><div class="k">Scenarios</div><div class="v tnum" id="sj-n"></div></div>
+        <div><div class="k">Time per scenario</div><div class="v tnum" id="sj-avg"></div></div>
+      </div>
+    </div>
+    <figure class="ex">
+      <div class="ex-h"><span class="ex-t">Score by competency</span><span class="ex-ref">% of points earned</span></div>
+      <div class="hbar" id="sj-comps"></div>
+      <figcaption id="sj-compnote"></figcaption>
+    </figure>
+    <div class="sjctl">
+      <button class="btn primary small" type="button" id="sj-retake">Retake with the same settings</button>
+      <button class="btn small" type="button" id="sj-new">Change settings</button>
+    </div>
+    <p class="h-sec">Review your answers</p>
+    <div class="sjseg" role="group" aria-label="Which answers to show" style="margin-top:8px">
+      <button class="btn small" type="button" data-rev="miss" aria-pressed="true">Points lost</button>
+      <button class="btn small" type="button" data-rev="all" aria-pressed="false">All</button>
+    </div>
+    <ol class="sjrev" id="sj-rev"></ol>
+    <p class="h-sec">Your recent scores</p>
+    <ul class="sjhist" id="sj-hist"></ul>
+  </div>
+</section>
+
+<!-- 04 TIPS -->
+<section class="step" id="tips">
+  <div class="sh"><span class="idx">04</span><h2>What firms look for</h2><button class="btn small listen" type="button">Listen</button></div>
+  <p class="sub" data-say>The eight competencies this test scores, what strong looks like, and the trap for each.</p>
+  <div class="vocab">
+    <div class="term" data-say><b>Integrity and ethics</b><p>Strong: accurate records, protected client data, mistakes disclosed through your team. Trap: going along with a "small" shortcut because someone senior said so.</p></div>
+    <div class="term" data-say><b>Client focus</b><p>Strong: helpful and responsive, while protecting quality and scope. Trap: saying yes to everything, or no to anything.</p></div>
+    <div class="term" data-say><b>Teamwork and inclusion</b><p>Strong: helps teammates first, gives credit, brings in quieter voices. Trap: going straight over someone's head.</p></div>
+    <div class="term" data-say><b>Ownership and drive</b><p>Strong: owns mistakes, flags risks early with a plan, offers spare time. Trap: hoping a problem fixes itself.</p></div>
+    <div class="term" data-say><b>Communication</b><p>Strong: clarifies vague asks, leads with the answer, tries another channel when stuck. Trap: guessing silently.</p></div>
+    <div class="term" data-say><b>Prioritizing and time</b><p>Strong: makes trade-offs visible and lets the right person decide. Trap: quietly dropping one task or working all night instead of speaking up.</p></div>
+    <div class="term" data-say><b>Adaptability</b><p>Strong: refocuses fast when plans change and takes on stretch work with preparation. Trap: waiting for perfect clarity.</p></div>
+    <div class="term" data-say><b>Learning and feedback</b><p>Strong: thanks people for feedback and acts on it, and asks for it when it's missing. Trap: defending or explaining instead of listening.</p></div>
+  </div>
+</section>
+
+<section class="step" id="behavioral">
+  <div class="sh"><span class="idx">05</span><h2>Behavioral round</h2><button class="btn small listen" type="button">Listen</button></div>
+  <p class="def" data-say>The behavioral round is a conversation, not a test. Every question maps to a competency the firm is screening: ownership, teamwork, communication, resilience. Your job is one specific story told in a fixed shape, then stop. Use CARL: one sentence of context, what you did, a result you can point to, and the learning. About ninety seconds, then let them pull the thread.</p>
+  <div class="split">
+    <div class="panel">
+      <h3>The nine questions you are most likely to get</h3>
+      <p class="tag">PwC and Big 4 behavioral staples</p>
+      <ul data-say>
+        <li><b>Tell me about yourself.</b> Sixty seconds, ends on why deals.</li>
+        <li><b>Why PwC? Why CMAAS?</b> Have one honest reason, not a website quote.</li>
+        <li><b>Tell me about a time you led a team.</b></li>
+        <li><b>A time you worked with someone difficult.</b></li>
+        <li><b>A time you failed or missed something.</b> Never a humblebrag.</li>
+        <li><b>A time you had to learn something fast.</b></li>
+        <li><b>A time you handled pressure or an unhappy client.</b></li>
+        <li><b>A time you pushed back or faced an integrity question.</b></li>
+        <li><b>A time you improved how something worked.</b></li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3>Rules for every answer</h3>
+      <p class="tag">What separates offers from round files</p>
+      <ul data-say>
+        <li>One story per question. Two half-stories score worse than one full one.</li>
+        <li>Say "I", not "we", for the part you actually did.</li>
+        <li>End on the result and the learning, not the drama.</li>
+        <li>Pause before answering. Two seconds of thinking reads as thoughtfulness.</li>
+        <li>Never blame a former manager, teammate, or client.</li>
+        <li>Have numbers: hours saved, people led, deadline hit.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="h-sec">Your story bank</p>
+  <div class="vocab">
+    <div class="term" data-say><b>FanTAXtic team captain</b><p>Building a two-week plan, running three meetings a week, getting four people to one shared analysis before touching the deck. Covers: leadership, teamwork, deadlines, working across styles.</p></div>
+    <div class="term" data-say><b>Deloitte audit internship</b><p>Real client work, firm tools, and the pace of a professional services floor. Covers: learning fast, attention to detail, what the job actually is.</p></div>
+    <div class="term" data-say><b>Founded Chopped SC</b><p>Taking a cooking club from an idea to a running organization with events and industry guests. Covers: initiative, ownership, building things with no template.</p></div>
+    <div class="term" data-say><b>Twelve years in hospitality</b><p>Guest escalations, packed services, de-escalating angry people while the room keeps moving. Covers: pressure, difficult people, client service, composure.</p></div>
+    <div class="term" data-say><b>First-gen transfer at 28</b><p>Glendale College to USC Leventhal, paying for it yourself, outperforming students ten years younger. Covers: motivation, resilience, why this career is real and not rehearsed.</p></div>
+  </div>
+  <p class="h-sec">Strong answers, in your voice</p>
+  <p class="def" data-say>These are drafts, not scripts. Read them once, put them away, and say the story your own way. Anything in brackets needs a detail only you know.</p>
+  <div class="vocab">
+    <div class="term" data-say><b>"Tell me about yourself."</b><p>"I spent twelve years in hospitality, most of it running service in busy restaurants, which taught me how to read people and stay calm when everything happens at once. At 28 I went back to school as a first-generation transfer student, and now I am a junior in accounting at USC's Leventhal School. Last summer I interned in audit at Deloitte, I captain my team for Deloitte's FanTAXtic case competition, and I founded a cooking club on campus, Chopped SC. What pulls it together: I like work where analysis and people sit side by side, which is why deal advisory is where I am aiming."</p></div>
+    <div class="term" data-say><b>"Why PwC? Why CMAAS?"</b><p>"The Deloitte internship showed me which part of this work I love: sitting with a real client problem until it is solved. CMAAS is exactly that corner, technical accounting applied to live transactions, explained to people who are not accountants. And I learn best around people who raise the bar, which is what I kept hearing about the Deals practice in Los Angeles." (Swap in your real reason if it is a different one. One specific, honest detail beats three generic ones.)</p></div>
+    <div class="term" data-say><b>"Tell me about a time you led a team."</b><p>"I captain our FanTAXtic team for Deloitte's case competition. At our first practice everyone read the case alone and we were talking past each other. So I wrote a two-week plan: week one, three short meetings where we worked the analysis without AI until everyone reached the same understanding of the objectives; week two, we built the deck together and cleared blockers as they came up. Result: [our deck went in on the Nov 4 deadline and everyone could defend any slide]. What I learned: alignment first, speed second."</p></div>
+    <div class="term" data-say><b>"A time you handled pressure or a difficult person."</b><p>"From restaurants: on a packed Friday, a guest [sent back his meal and started raising his voice], and my manager was buried. I stepped in, let him finish without interrupting, said back to him exactly what he was angry about, fixed what I could fix immediately, and checked back twice before he left. He ended the night happy. What I learned: people want to be heard before they want to be solved, and staying calm is a skill you practice, not a personality trait."</p></div>
+    <div class="term" data-say><b>"A time you failed or missed something."</b><p>"During my internship, [one of my workpapers came back with more review comments than I expected]. I was embarrassed, but I took it to my senior the same day instead of hiding it, fixed every point, and built a short checklist from the comments so the same thing would not happen again. The checklist stuck for the rest of the internship. What I learned: a mistake costs the least when you surface it yourself, early."</p></div>
+  </div>
+  <p class="h-sec">Two questions to ask them</p>
+  <div class="vocab">
+    <div class="term" data-say><b>1. "What does a first-year's first week on the team actually look like?"</b><p>Signals you are already picturing the job, not the title.</p></div>
+    <div class="term" data-say><b>2. "How much client contact do juniors get in CMAAS, and when does it start?"</b><p>Signals your client-facing instinct, which is your differentiator.</p></div>
+  </div>
+</section>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Practice in the style of the situational judgment tests used by professional services firms. It isn't any firm's actual test, questions, or scoring. The scenarios and expert rankings were written for practice and reflect common professional-services values; real tests differ by firm and are scored against each firm's own key. Formats are based on public prep guides from <a href="https://www.practiceaptitudetests.com/resources/situational-judgement-test-response-formats/" target="_blank" rel="noopener">Practice Aptitude Tests</a> and <a href="https://managementconsulted.com/ey-online-assessment/" target="_blank" rel="noopener">Management Consulted</a>.</p>
+    <p>Your recent scores are saved only in this browser.</p>
+  </div>
+</footer>
+<div id="tip" hidden role="tooltip"></div>
+<script>
+(function(){
+  "use strict";
+  const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+  const NS="http://www.w3.org/2000/svg";
+  const svgEl=(t,a={})=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;};
+  const LET="ABCD";
+
+  /* ---------- tooltip ---------- */
+  const tip=$("#tip");
+  function showTip(el,x,y){tip.textContent=el.getAttribute("data-tip");tip.hidden=false;
+    const w=tip.offsetWidth,h=tip.offsetHeight;let L=x+12,T=y-h-10;
+    if(L+w>innerWidth-8)L=x-w-12; if(T<8)T=y+14; tip.style.left=Math.max(8,L)+"px";tip.style.top=T+"px";}
+  document.addEventListener("pointermove",e=>{const t=e.target.closest&&e.target.closest("[data-tip]");if(t)showTip(t,e.clientX,e.clientY);else tip.hidden=true;});
+  document.addEventListener("focusin",e=>{const t=e.target.closest&&e.target.closest("[data-tip]");if(t){const r=t.getBoundingClientRect();showTip(t,r.left+r.width/2,r.top);}});
+  document.addEventListener("focusout",()=>{tip.hidden=true;});
+  addEventListener("scroll",()=>{tip.hidden=true;},{passive:true});
+
+  /* ---------- reveal toggles ---------- */
+  $$(".reveal").forEach(b=>{const t=document.getElementById(b.getAttribute("aria-controls"));const show=b.textContent;
+    const hide=show.startsWith("Show as")?"Hide table":"Hide";
+    b.addEventListener("click",()=>{const open=t.hidden;t.hidden=!open;b.setAttribute("aria-expanded",String(open));b.textContent=open?hide:show;});});
+
+  /* ---------- timers ---------- */
+  let actx=null;
+  function beep(){try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();const o=actx.createOscillator(),g=actx.createGain();o.frequency.value=880;g.gain.setValueAtTime(.0001,actx.currentTime);g.gain.exponentialRampToValueAtTime(.2,actx.currentTime+.02);g.gain.exponentialRampToValueAtTime(.0001,actx.currentTime+.5);o.connect(g).connect(actx.destination);o.start();o.stop(actx.currentTime+.55);}catch(e){}}
+  $$(".timer").forEach(b=>{const secs=+b.dataset.secs,label=b.textContent;let id=null,left=0;
+    const fmt=s=>Math.floor(s/60)+":"+String(s%60).padStart(2,"0");
+    b.addEventListener("click",()=>{
+      if(id){clearInterval(id);id=null;b.textContent=label;b.setAttribute("aria-pressed","false");return;}
+      try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();}catch(e){}
+      left=secs;b.textContent=fmt(left)+" · stop";b.setAttribute("aria-pressed","true");
+      id=setInterval(()=>{left--;if(left<=0){clearInterval(id);id=null;b.textContent="Time. Answer now";b.setAttribute("aria-pressed","false");beep();setTimeout(()=>{if(!id)b.textContent=label;},4000);return;}b.textContent=fmt(left)+" · stop";},1000);
+    });});
+
+  /* ---------- steppers ---------- */
+  $$(".stepper").forEach(s=>{const steps=$$(".st",s),next=$(".next",s),reset=$(".reset",s);let i=0;
+    const upd=()=>{next.hidden=i>=steps.length;next.textContent="Reveal step "+(i+1)+" of "+steps.length;};
+    next.addEventListener("click",()=>{if(i<steps.length){steps[i].hidden=false;i++;upd();}});
+    reset.addEventListener("click",()=>{steps.forEach(x=>x.hidden=true);i=0;upd();});upd();});
+
+
+  /* ---------- chart builders ---------- */
+  function niceMax(m){const steps=[1,1.5,2,2.5,3,4,5,6,8,10,12,15,20,25,30,40,50,60,80,100,120,150,200,250,300,400,500,600,800,1000,1200,1500,2000];for(const s of steps)if(s>=m)return s;return Math.ceil(m/500)*500;}
+  function roundTop(x,y,w,h,r){r=Math.min(r,h,w/2);return `M${x},${y+h}V${y+r}Q${x},${y} ${x+r},${y}H${x+w-r}Q${x+w},${y} ${x+w},${y+r}V${y+h}Z`;}
+  function multiples(el,Q,SER){
+    SER.forEach(s=>{
+      const f=s.f||(v=>String(v)),n=s.v.length,last=n-1;
+      const card=document.createElement("div");card.className="mini";
+      card.innerHTML=`<div class="nm">${s.k}</div><div class="ch">${f(s.v[0])} → ${f(s.v[last])}</div>`;
+      const W=200,H=104,top=18,bot=20,pl=4,pr=4,ph=H-top-bot,band=(W-pl-pr)/n,bw=Math.min(22,band*.58),max=niceMax(Math.max(...s.v)*1.12);
+      const svg=svgEl("svg",{viewBox:`0 0 ${W} ${H}`,role:"img","aria-label":`${s.k}: ${s.v.map((v,i)=>Q[i]+" "+f(v)).join(", ")}`});
+      s.v.forEach((v,i)=>{const cx=pl+band*i+band/2,h=Math.max(1,v/max*ph),x=cx-bw/2,y=top+ph-h;
+        svg.appendChild(svgEl("path",{d:roundTop(x,y,bw,h,4),fill:"var(--s1)"}));
+        if(i===0||i===last){const edge=n>6,tx=edge?(i===0?Math.max(1,x):Math.min(W-1,x+bw)):cx,an=edge?(i===0?"start":"end"):"middle";const t=svgEl("text",{x:tx,y:y-5,"text-anchor":an,"font-size":"10.5","font-weight":"600",fill:"var(--fg-2)"});t.textContent=f(v);svg.appendChild(t);}
+        const q=svgEl("text",{x:cx,y:H-5,"text-anchor":"middle","font-size":n>5?"8.5":"9.5",fill:"var(--muted)"});q.textContent=Q[i];svg.appendChild(q);
+        svg.appendChild(svgEl("rect",{x:pl+band*i,y:0,width:band,height:H,fill:"transparent","data-tip":`${s.k} · ${Q[i]}: ${f(v)}`}));
+      });
+      svg.insertBefore(svgEl("line",{x1:0,x2:W,y1:top+ph+.5,y2:top+ph+.5,stroke:"var(--axis)","stroke-width":"1"}),svg.firstChild);
+      card.appendChild(svg);el.appendChild(card);
+    });
+  }
+  function multTable(el,Q,SER){
+    el.innerHTML=`<table><thead><tr><th>Measure</th>${Q.map(q=>`<th class="n">${q}</th>`).join("")}</tr></thead><tbody>${SER.map(s=>`<tr><td>${s.k}</td>${s.v.map(v=>`<td class="n">${(s.f||String)(v)}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
+  }
+  function axis(el,o){const ax=document.createElement("div");ax.className="axis";
+    ax.innerHTML=`<div></div><div class="ticks">${o.ticks.map(v=>`<span style="left:${v/o.max*100}%">${o.tick(v)}</span>`).join("")}</div>`;el.appendChild(ax);
+    if(o.ref&&o.ref.note){const p=document.createElement("p");p.className="tolnote";p.textContent=o.ref.note;el.appendChild(p);}}
+  /* one bar per row: rows {d,t,v,lab,tip,st:{bad,txt}} */
+  function hbar(el,rows,o){
+    rows.forEach(r=>{const row=document.createElement("div");row.className="hrow";const w=r.v/o.max*100;
+      row.innerHTML=`<div class="hlab"><b>${r.d}</b>${r.t?`<span>${r.t}</span>`:""}${r.st?`<span class="status ${r.st.bad?"bad":"ok"}">${r.st.bad?"▲ ":"✓ "}${r.st.txt}</span>`:""}</div>
+        <div class="track" tabindex="0" data-tip="${r.tip||r.d+": "+r.lab}"><div class="bar" style="width:${Math.max(.4,w)}%"></div><span class="bval" style="left:${w}%">${r.lab}</span>${o.ref?`<div class="tol" style="left:${o.ref.at/o.max*100}%"></div>`:""}</div>`;
+      el.appendChild(row);});
+    axis(el,o);
+  }
+  /* stacked segments, total named in the label: rows {n,d,seg:[[v,cls,tip]]} */
+  function stack(el,rows,o){
+    rows.forEach(r=>{const row=document.createElement("div");row.className="hrow";let x=0,bars="";
+      r.seg.forEach(([v,c,t],i)=>{const left=x/o.max*100,w=v/o.max*100;
+        bars+=`<div class="bar ${c}" tabindex="0" data-tip="${t}" style="left:calc(${left}% + ${i?2:0}px);width:calc(${w}% - ${i?2:0}px);border-radius:${i===r.seg.length-1?"0 4px 4px 0":"0"}"></div>`;x+=v;});
+      row.innerHTML=`<div class="hlab"><b>${r.n}</b><span>${r.d}</span></div><div class="track">${bars}${o.ref?`<div class="tol" style="left:${o.ref.at/o.max*100}%"></div>`:""}</div>`;
+      el.appendChild(row);});
+    axis(el,o);
+  }
+  /* waterfall: rows {n,d,total} or {n,d,delta}; totals neutral, ups blue, downs orange */
+  function waterfall(el,rows,o){let run=0;
+    rows.forEach(r=>{const row=document.createElement("div");row.className="hrow";let bar,lab,tip;
+      if(r.total!==undefined){run=r.total;bar=`<div class="bar b3" style="width:${r.total/o.max*100}%"></div>`;lab=`<span class="bval" style="left:${r.total/o.max*100}%">${o.fmt(r.total)}</span>`;tip=`${r.n}: ${o.fmt(r.total)}`;}
+      else{const a=Math.min(run,run+r.delta),b=Math.max(run,run+r.delta);
+        bar=`<div class="bar ${r.delta<0?"b2":""}" style="left:${a/o.max*100}%;width:${(b-a)/o.max*100}%;border-radius:3px"></div>`;
+        lab=`<span class="bval" style="left:${b/o.max*100}%">${r.delta<0?"−":"+"}${o.fmt(Math.abs(r.delta))}</span>`;tip=`${r.n}: ${r.delta<0?"−":"+"}${o.fmt(Math.abs(r.delta))}`;run+=r.delta;}
+      row.innerHTML=`<div class="hlab"><b>${r.n}</b><span>${r.d}</span></div><div class="track" tabindex="0" data-tip="${tip}">${bar}${lab}</div>`;
+      el.appendChild(row);});
+    axis(el,o);
+  }
+
+  /* ---------- heat map you score ---------- */
+  function heatScorer(HM){
+    const band=s=>s>=20?5:s>=15?4:s>=9?3:s>=5?2:1;
+    const C=54,ox=84,oy=8,G=C*5,HW=ox+G+8,HH=oy+G+52;
+    const hs=svgEl("svg",{viewBox:`0 0 ${HW} ${HH}`,role:"img","aria-label":"Heat map"});
+    for(let X=1;X<=5;X++)for(let Y=1;Y<=5;Y++)
+      hs.appendChild(svgEl("rect",{x:ox+(X-1)*C+1,y:oy+(5-Y)*C+1,width:C-2,height:C-2,rx:3,fill:`var(--h${band(X*Y)})`}));
+    for(let k=1;k<=5;k++){
+      const t=svgEl("text",{x:ox+(k-.5)*C,y:oy+G+15,"text-anchor":"middle","font-size":"11",fill:"var(--fg-2)"});t.textContent=k;hs.appendChild(t);
+      if(HM.lx[k-1]){const t2=svgEl("text",{x:ox+(k-.5)*C,y:oy+G+28,"text-anchor":"middle","font-size":"9.5",fill:"var(--muted)"});t2.textContent=HM.lx[k-1];hs.appendChild(t2);}
+      const u=svgEl("text",{x:ox-8,y:oy+(5-k+.5)*C+4,"text-anchor":"end","font-size":"11",fill:"var(--fg-2)"});u.textContent=k;hs.appendChild(u);
+      if(HM.ly[k-1]){const u2=svgEl("text",{x:ox-20,y:oy+(5-k+.5)*C+4,"text-anchor":"end","font-size":"9.5",fill:"var(--muted)"});u2.textContent=HM.ly[k-1];hs.appendChild(u2);}
+    }
+    const xt=svgEl("text",{x:ox+G/2,y:oy+G+46,"text-anchor":"middle","font-size":"11","font-weight":"600",fill:"var(--fg)"});xt.textContent=HM.xName+" →";hs.appendChild(xt);
+    const yt=svgEl("text",{x:9,y:oy+G/2,"text-anchor":"middle","font-size":"11","font-weight":"600",fill:"var(--fg)",transform:`rotate(-90 9 ${oy+G/2})`});yt.textContent=HM.yName+" →";hs.appendChild(yt);
+    const dots=svgEl("g");hs.appendChild(dots);$("#heatmap").appendChild(hs);
+    const IT=HM.items,xn=HM.xName.toLowerCase(),yn=HM.yName.toLowerCase();
+    const opt=lab=>`<option value="">${lab}</option>`+[1,2,3,4,5].map(v=>`<option value="${v}">${v}</option>`).join("");
+    $("#scorer").innerHTML=IT.map(r=>`<li><span class="id">${r.id}</span><span class="nm">${r.n}</span><span class="pick"><select id="x-${r.id}" aria-label="${r.id} ${xn}, 1 to 5">${opt(HM.xs)}</select><select id="y-${r.id}" aria-label="${r.id} ${yn}, 1 to 5">${opt(HM.ys)}</select><span class="sc" id="s-${r.id}">–</span></span></li>`).join("");
+    const rank=(a,b)=>b.x*b.y-a.x*a.y||b.y-a.y;
+    $("#teamlist").innerHTML=[...IT].sort(rank).map(r=>`<li data-say="${r.id}. ${r.n}. ${HM.xName} ${r.x}, ${yn} ${r.y}, score ${r.x*r.y}. ${r.w}"><span class="id">${r.id}</span><span class="nm"><b>${r.n}</b><span class="w">${r.w}</span></span><span class="sc">${r.x}×${r.y} = ${r.x*r.y}</span></li>`).join("");
+    let mode="mine";
+    const mine=()=>IT.map(r=>({id:r.id,n:r.n,x:+$("#x-"+r.id).value,y:+$("#y-"+r.id).value})).filter(r=>r.x&&r.y);
+    const offsets=n=>n<=1?[[0,0]]:n===2?[[-12,0],[12,0]]:n<=4?[[-12,-11],[12,-11],[-12,11],[12,11]]:[[-15,-11],[0,-11],[15,-11],[-15,11],[0,11],[15,11]];
+    function plot(list){
+      while(dots.firstChild)dots.removeChild(dots.firstChild);
+      const cells={};list.forEach(r=>{const k=r.x+"-"+r.y;(cells[k]=cells[k]||[]).push(r);});
+      Object.values(cells).forEach(arr=>{const off=offsets(arr.length),big=arr.length===1,rad=big?14:arr.length<=4?10:8;
+        arr.forEach((r,j)=>{const cx=ox+(r.x-.5)*C+off[j][0],cy=oy+(5-r.y+.5)*C+off[j][1];
+          const g=svgEl("g",{tabindex:"0","data-tip":`${r.id} · ${r.n}: ${xn} ${r.x}, ${yn} ${r.y}, score ${r.x*r.y}`});
+          g.appendChild(svgEl("circle",{cx,cy,r:rad+2,fill:"var(--surface)"}));
+          g.appendChild(svgEl("circle",{cx,cy,r:rad,fill:"var(--dot)"}));
+          const t=svgEl("text",{x:cx,y:cy+(big?4:3),"text-anchor":"middle","font-size":big?"11":"8.5","font-weight":"600",fill:"var(--dot-ink)"});t.textContent=r.id;g.appendChild(t);
+          dots.appendChild(g);});});
+      hs.setAttribute("aria-label",`Heat map of ${xn} by ${yn}, ${mode==="team"?"team's scores":"your scores"}. `+(list.length?list.map(r=>`${r.id}: ${xn} ${r.x}, ${yn} ${r.y}`).join(". "):"Nothing scored yet."));
+    }
+    function render(){
+      const m=mine();
+      IT.forEach(r=>{const x=+$("#x-"+r.id).value,y=+$("#y-"+r.id).value;$("#s-"+r.id).textContent=x&&y?"= "+x*y:"–";});
+      const top=$("#mytop");
+      if(!m.length)top.textContent=`Score all ${IT.length} to see your top three.`;
+      else if(m.length<IT.length)top.textContent=`Scored ${m.length} of ${IT.length}. Score all ${IT.length} to see your top three.`;
+      else top.textContent="Your top three by score: "+[...m].sort(rank).slice(0,3).map(r=>`${r.id} (${r.x*r.y})`).join(", ")+".";
+      const note=$("#mapnote");
+      if(mode==="team"){plot(IT);note.textContent="Showing the team's scores. Switch back to compare with yours.";}
+      else{plot(m);note.textContent=m.length?"Showing your scores. Shared cells show dots side by side.":"Your dots appear here as you score each one.";}
+    }
+    function setMode(v){mode=v;$("#mMine").setAttribute("aria-pressed",String(v==="mine"));$("#mTeam").setAttribute("aria-pressed",String(v==="team"));render();}
+    $("#scorer").addEventListener("change",()=>{if(mode!=="mine")setMode("mine");else render();});
+    $("#mMine").addEventListener("click",()=>setMode("mine"));
+    $("#mTeam").addEventListener("click",()=>{if(!$("#mTeam").disabled)setMode("team");});
+    $("#rv-prio").addEventListener("click",()=>{$("#mTeam").disabled=false;setMode($("#a-prio").hidden?"mine":"team");});
+    render();
+  }
+
+  const COMPS={
+    integ:"Integrity and ethics",client:"Client focus",team:"Teamwork and inclusion",own:"Ownership and drive",
+    comm:"Communication",prio:"Prioritizing and time",adapt:"Adaptability",learn:"Learning and feedback"};
+  /* k = option indexes from most to least effective */
+  const ITEMS=[
+  {c:"integ",s:"While preparing this month's client report, you notice a number in last month's report, already sent to the client, was wrong. The error is small, and your senior says nobody will notice.",
+   o:["Leave it, since your senior has more experience.","Correct it quietly in this month's report without mentioning it.","Tell your senior you're uncomfortable and suggest raising it with the manager so the client gets a correction.","Email the client yourself with the correct number."],
+   k:[2,3,1,0],w:"The client relied on a wrong number, so it needs a correction through your team. Emailing the client yourself is honest but goes around your team. Fixing it quietly leaves the client unaware. Leaving it is worst."},
+  {c:"integ",s:"A client employee offers you two tickets to a sold-out concert as thanks for your help on the project.",
+   o:["Accept them; refusing would be rude.","Politely decline, check the firm's gift policy, and mention the offer to your manager.","Accept them and don't tell anyone.","Politely decline without mentioning it to anyone."],
+   k:[1,3,0,2],w:"Gifts from clients can threaten independence, so decline and be open about it. Declining quietly is safe but misses the chance to check policy. Accepting openly is risky; accepting secretly is worst."},
+  {c:"integ",s:"On a crowded train, you overhear two colleagues discussing a client's upcoming acquisition by name.",
+   o:["Ignore it; it's not your conversation.","Join in and add what you know.","Afterward, quietly remind them that they were discussing confidential client details in public.","Report them to HR right away without talking to them."],
+   k:[2,3,0,1],w:"A quiet word stops the leak without drama. Going straight to HR deals with the risk but skips a simple fix. Ignoring it lets the leak continue. Joining in makes it worse."},
+  {c:"integ",s:"You spent 3 hours on a client task budgeted for 1 hour. Your senior tells you to record only 1 hour on your timesheet to keep the budget looking good.",
+   o:["Record 1 hour, as told.","Record the real 3 hours and explain to your senior why you're not comfortable doing otherwise.","Record 2 hours as a compromise.","Record the real 3 hours and say nothing."],
+   k:[1,3,2,0],w:"Time records must be accurate, and explaining keeps your senior in the loop. Recording it accurately without a word is right but may surprise them. Any number other than the truth is a misstatement, and following the instruction outright is worst."},
+  {c:"integ",s:"You realize a spreadsheet you built last week has a formula error that slightly changes a figure in the client's board pack. The board meets tomorrow.",
+   o:["Fix the file and hope the old version isn't used.","Tell your manager right away, with the corrected figure and what changed.","Wait until after the board meeting so you don't cause alarm.","Email the client contact directly with a corrected file."],
+   k:[1,3,0,2],w:"Speed and openness matter most: your manager can decide how to tell the client before the meeting. Emailing the client is honest but skips your manager. Quietly fixing it leaves the risk. Waiting until after the board sees a wrong number is worst."},
+  {c:"integ",s:"A friend at another company asks you to share a template your firm built for a client project, \"just to see the format.\"",
+   o:["Share it, since it's only a format.","Decline, explaining it belongs to the firm and the client.","Remove the client's name and share it.","Ask your manager whether you're allowed to share it."],
+   k:[1,3,2,0],w:"Client work product isn't yours to share. Asking your manager is safe but you already know the answer. Removing the name still shares firm work. Sharing it as is is worst."},
+  {c:"integ",s:"During testing, you find a client manager approved his own expense claims, which breaks the client's policy. He's friendly and asks you not to make a big deal of it.",
+   o:["Leave it out of your notes to keep the relationship good.","Document it accurately and raise it with your senior.","Ask him to fix it quietly and leave it out of your notes.","Mention it casually to the client's CFO over lunch."],
+   k:[1,3,2,0],w:"Findings must be documented and handled through your team. Telling the CFO gets it to someone senior, but informally and around your team. Asking him to fix it quietly still hides it. Leaving it out is worst."},
+
+  {c:"client",s:"A client asks for an extra analysis that's outside the agreed scope. It would take you about a day.",
+   o:["Do it over the weekend so the client is happy.","Tell the client it's out of scope and refuse.","Tell the client you'll check with your manager, then raise it.","Do it during the week and push your other work back."],
+   k:[2,0,3,1],w:"Scope is your manager's call, and checking keeps the client happy too. Doing it on your own time makes that call for the firm. Pushing other work back also risks other deadlines. A flat refusal closes the door on work the firm might want."},
+  {c:"client",s:"A client contact is frustrated that your team's data requests are taking too much of her staff's time.",
+   o:["Explain that the requests are required and she needs to provide the data.","Listen, acknowledge the burden, and suggest one combined weekly list with clear priorities.","Tell her you'll stop sending requests for a while.","Pass it straight to your manager without responding to her."],
+   k:[1,3,2,0],w:"Acknowledge the problem and offer a fix that still gets the work done. Involving your manager can help, but she should hear from you first. Pausing requests risks the project. Insisting she comply damages the relationship most."},
+  {c:"client",s:"You're presenting findings, and the client's CFO asks a question you don't know the answer to.",
+   o:["Give your best guess confidently.","Say you don't know and move on.","Say you'd like to confirm the exact figure and will follow up by end of day, then do it.","Turn to your manager to answer without warning."],
+   k:[2,3,1,0],w:"Honest and helpful: commit to a follow-up and keep it. Handing over to your manager can work but catches them off guard. \"I don't know\" alone leaves the CFO hanging. A confident guess that turns out wrong hurts credibility most."},
+  {c:"client",s:"The client asks you to email a file with sensitive employee salary data. You're working from a coffee shop on public Wi-Fi.",
+   o:["Send it now; the client is waiting.","Use the firm's secure file-sharing tool over the VPN, or wait until you can.","Send it from your personal email to be quick.","Tell the client you can't send it at all."],
+   k:[1,3,0,2],w:"Use the secure channel, even if it takes a little longer. Refusing outright protects the data but isn't helpful. Sending it over public Wi-Fi is risky, and personal email is worst."},
+  {c:"client",s:"A client's new finance director asks you to \"just make the numbers work\" so the quarterly results look better.",
+   o:["Adjust the figures slightly; it's their company.","Explain politely that you can only present accurate numbers, and tell your manager about the request.","Ignore the request and carry on.","Refuse firmly and threaten to report him."],
+   k:[1,3,2,0],w:"Hold the line politely and make sure your manager knows. A firm refusal is right in substance but threatening escalates needlessly. Ignoring it leaves a risk unaddressed. Adjusting the numbers is worst."},
+  {c:"client",s:"While working, you spot a way for the client to save costs in an area unrelated to your project.",
+   o:["Mention it to the client in your next meeting.","Share it with your manager and suggest how it might be raised.","Ignore it; it's outside your scope.","Write a detailed proposal on your own time and send it to the client."],
+   k:[1,0,2,3],w:"Good catch; let your manager decide how to raise it. Mentioning it directly is helpful but skips the team. Ignoring it misses value. Sending an unrequested proposal commits the firm without approval."},
+  {c:"client",s:"The client asks you to finish a deliverable two days early. You can only do it by skipping your quality checks.",
+   o:["Agree and skip the checks.","Tell the client it's impossible.","Talk to your manager about options, like delivering the key parts early and the rest on time.","Agree, then work through the night to do both."],
+   k:[2,3,1,0],w:"Look for a solution that protects quality, with your manager. Working all night keeps quality but isn't sustainable. Saying it's impossible is unhelpful. Skipping checks puts errors in front of the client."},
+
+  {c:"team",s:"A teammate hasn't finished their part of a group deliverable, and it's due tomorrow.",
+   o:["Do their part yourself without saying anything.","Ask how it's going, offer help with the most urgent piece, and flag it to the senior if it's still at risk.","Tell the senior right away that your teammate is behind.","Submit your part only and let them face the consequences."],
+   k:[1,2,0,3],w:"Support first, then escalate if needed. Telling the senior is reasonable but skips talking to your teammate. Silently doing their work hides the problem. Leaving them to fail hurts the whole team."},
+  {c:"team",s:"In meetings, a quieter colleague keeps getting interrupted, and her ideas are later repeated by others as their own.",
+   o:["Say nothing; it's not your place.","In the meeting, say you'd like to hear the rest of her point, and credit her ideas when they come up.","Tell her privately she needs to be more assertive.","Raise the pattern with the manager."],
+   k:[1,3,0,2],w:"Speak up in the moment and give credit where it's due. Raising it with the manager is also constructive. Staying silent lets it continue. Telling her to be more assertive puts the burden on the person being interrupted."},
+  {c:"team",s:"You disagree with your senior's approach to an analysis. You think another method would be more accurate.",
+   o:["Use your method without telling them.","Share your concern with evidence, then go with their decision if they still prefer theirs.","Do it their way and keep your concern to yourself.","Raise it with the manager over your senior's head."],
+   k:[1,2,3,0],w:"Speak up with evidence, then respect the decision. Staying quiet is respectful but wastes your insight. Going over their head damages trust. Quietly doing it your way is worst."},
+  {c:"team",s:"A new team member from another office keeps making small formatting mistakes that you end up fixing.",
+   o:["Keep fixing them quietly.","Show them the team's template and the common fixes, and offer to review their next draft.","Tell the senior the new person isn't up to standard.","Stop fixing them so the senior notices."],
+   k:[1,0,2,3],w:"Help them learn so the problem goes away. Fixing quietly is kind but doesn't solve it. Criticizing them to the senior skips helping. Letting errors through on purpose hurts the client and the team."},
+  {c:"team",s:"Two teammates are in a tense disagreement that's slowing the team down.",
+   o:["Stay out of it.","Suggest a short call to agree on next steps, focused on the deliverable rather than who's right.","Take the side of the person you agree with.","Ask the manager to step in right away."],
+   k:[1,3,0,2],w:"Refocus everyone on the work. Asking the manager is fine if that fails. Staying out of it lets the delay continue. Taking sides makes it worse."},
+  {c:"team",s:"Your team is splitting the work for a tight deadline. The leftover task is tedious data cleanup nobody wants.",
+   o:["Volunteer for it, and suggest rotating tasks like this in the future.","Wait to see if someone else takes it.","Suggest the most junior person does it.","Take it, but complain about it later."],
+   k:[0,3,1,2],w:"Volunteering helps the team, and rotating is fair. Taking it but complaining spoils the help. Waiting slows everyone down. Pushing it onto the most junior person is worst."},
+
+  {c:"own",s:"You finish your assigned tasks early on a Thursday afternoon.",
+   o:["Leave early since your work is done.","Ask your senior if there's anything you can help with, or offer to review a teammate's work.","Start a task you think might be useful without asking.","Spend the time on online training courses."],
+   k:[1,3,2,0],w:"Offer your time to the team first. Training is a good use of time too. Starting unrequested work may not be what's needed. Leaving without checking is weakest."},
+  {c:"own",s:"You made a mistake that cost your team two hours of rework.",
+   o:["Explain it happened because the instructions were unclear.","Own the mistake, fix your part, and share how you'll prevent it next time.","Say nothing unless someone asks.","Apologize repeatedly to everyone on the team."],
+   k:[1,3,0,2],w:"Own it, fix it, prevent it. Over-apologizing is sincere but unhelpful. Blaming the instructions deflects. Hiding it is worst."},
+  {c:"own",s:"Your manager asks for volunteers to help organize the office charity event, on top of client work.",
+   o:["Volunteer for the whole thing and plan your client work around it.","Decline; client work comes first.","Volunteer, then hand most of it to others.","Offer to own one specific part you can fit in."],
+   k:[3,0,1,2],w:"Contribute in a way you can actually deliver. Taking on everything is generous but risky. Declining is understandable but misses a chance to contribute. Volunteering and then handing it off is worst."},
+  {c:"own",s:"A process your team uses wastes about an hour a day. Nobody has questioned it.",
+   o:["Keep following it; it must be there for a reason.","Build a better version and switch the team to it yourself.","Ask why it's done that way, then suggest an improvement to your senior.","Complain at lunch that the process is annoying."],
+   k:[2,1,0,3],w:"Understand first, then propose. Building a fix shows initiative, but switching the team without agreement oversteps. Following blindly misses a chance to improve. Complaining without acting is worst."},
+  {c:"own",s:"You're asked to learn a new data tool for a project that starts in two weeks.",
+   o:["Wait for formal training.","Start the online tutorials now and ask a colleague who uses it for tips.","Ask your manager to give the tool work to someone else.","Learn it once the project starts."],
+   k:[1,0,3,2],w:"Get ahead of it. Formal training is fine if it comes in time. Learning on the job risks slowing the project. Asking to avoid it is weakest."},
+  {c:"own",s:"A deliverable you own will miss its deadline by a day because the client sent its data late.",
+   o:["Tell your senior now, with a plan and a new date.","Work all night to try to make it, and only flag it if you fail.","Wait until the deadline, then explain the client was late.","Email the client to complain that their delay caused the problem."],
+   k:[0,1,2,3],w:"Flag early with a plan. Working all night shows commitment but surprises people if it fails. Waiting until the deadline is too late. Complaining to the client is worst."},
+
+  {c:"comm",s:"Your manager sends a vague request: \"Look into the client's costs.\"",
+   o:["Start pulling every cost report you can find.","Ask a few quick questions: what decision it's for, which costs, and by when.","Wait for more details.","Ask a colleague what they think the manager meant."],
+   k:[1,3,0,2],w:"A minute of clarifying saves hours. Asking a colleague can help but may guess wrong. Pulling everything wastes time. Waiting gets nothing done."},
+  {c:"comm",s:"You need to explain a complex analysis to a client who isn't a finance person.",
+   o:["Walk through every step of the model.","Lead with the answer and what it means for them, then offer details if they want them.","Send the spreadsheet and let them read it.","Use technical terms so it sounds credible."],
+   k:[1,0,2,3],w:"Answer first, in their language. A full walkthrough is accurate but loses them. Sending the spreadsheet leaves them alone with it. Jargon is worst."},
+  {c:"comm",s:"You're working remotely. Your senior hasn't replied to an urgent question for three hours.",
+   o:["Keep waiting.","Try a quick call or chat, and if you still can't reach them, ask another senior or the manager.","Make your best guess and carry on without telling anyone.","Make your best guess, note your assumption, and flag it for review."],
+   k:[1,3,0,2],w:"Try another channel, then another person. Moving forward with a flagged assumption is a sensible backup. Waiting wastes hours. Guessing silently is riskiest."},
+  {c:"comm",s:"You're asked to summarize a 40-page report for a partner who has five minutes.",
+   o:["A one-page summary with the three key findings first and details in an appendix.","A detailed 10-page summary so nothing is missed.","Forward the full report with a note to read section 3.","A list of every section heading."],
+   k:[0,1,3,2],w:"Lead with what matters, on one page. Ten pages won't get read in five minutes. Headings show structure but no findings. Forwarding the report does none of the work."},
+  {c:"comm",s:"In a client meeting, your manager quotes a figure you know is outdated.",
+   o:["Correct them in front of the client.","Pass them a quick note, or raise it together with the client right after the meeting.","Say nothing; it's the manager's meeting.","Email the client the right figure afterward, without telling your manager."],
+   k:[1,0,3,2],w:"Get the right number to the client without undermining your manager. Correcting them publicly is accurate but awkward. Emailing the client behind their back undermines them. Saying nothing leaves the client with a wrong number."},
+  {c:"comm",s:"A client emails you critical feedback that seems unfair.",
+   o:["Reply right away defending your work.","Take a few hours, discuss it with your senior, then respond.","Forward it to your team with a sarcastic comment.","Ignore it."],
+   k:[1,0,3,2],w:"Pause, get perspective, then respond professionally. Replying at once engages but tends to escalate. Ignoring a client is damaging. Mocking it is worst."},
+
+  {c:"prio",s:"Two managers each give you an urgent task due the same afternoon. You can't do both well.",
+   o:["Rush both as fast as you can.","Tell both managers about the clash and ask them to agree which comes first.","Do the task for the more senior manager.","Pick the one you think matters more and tell the other manager later."],
+   k:[1,0,2,3],w:"Make the conflict visible and let them decide. Rushing both risks errors in both. Choosing by seniority is a guess. Deciding alone and telling the other late is worst."},
+  {c:"prio",s:"It's 6 p.m. You've finished a draft due tomorrow at 9 a.m., but you haven't checked it.",
+   o:["Send it now to be early.","Check the key numbers tonight or first thing tomorrow, then send it on time.","Ask a teammate to check it overnight.","Send it now and mention it hasn't been checked."],
+   k:[1,3,0,2],w:"On time and checked beats early and unchecked. Sending it with a caveat is at least honest. Sending it unchecked risks errors. Handing your check to a teammate overnight is worst."},
+  {c:"prio",s:"You have 10 small tasks and 1 big, important task due in two days.",
+   o:["Clear the small tasks first to free your mind.","Block focused time for the big task first, and fit the small tasks around it.","Work on whatever comes up first.","Ask your senior to take some of the small tasks."],
+   k:[1,0,3,2],w:"Protect time for what matters most. Clearing small tasks first can eat the time you need. Asking your senior to take tasks should be a last resort. Reacting to whatever comes up is worst."},
+  {c:"prio",s:"A client emails you at 10 p.m. with a question that isn't urgent.",
+   o:["Reply right away to show you're responsive.","Reply the next morning.","Reply right away to say you'll answer properly tomorrow.","Wait until the client follows up."],
+   k:[1,2,0,3],w:"A non-urgent question can wait until the morning. A quick holding reply is fine too. Full late-night replies set an expectation you can't keep. Waiting for them to chase you is worst."},
+  {c:"prio",s:"Your calendar is full of internal meetings, and your client work is slipping.",
+   o:["Skip meetings without telling anyone.","Decide which meetings truly need you, decline or send updates for the rest, and tell your senior about the trade-off.","Attend everything and work late every night.","Ask your manager to cancel some of the meetings."],
+   k:[1,2,3,0],w:"Prioritize openly. Working late every night isn't sustainable. Asking your manager to cancel others' meetings pushes your problem up. Silently skipping is worst."},
+  {c:"prio",s:"A senior asks you to drop everything for a \"quick\" task that turns out to take most of the day, putting your other deadline at risk.",
+   o:["Finish the quick task and miss the other deadline.","Tell the senior what it's costing and ask which should come first.","Leave the quick task half done.","Work late to finish both and say nothing."],
+   k:[1,3,0,2],w:"Surface the trade-off early. Working late gets both done but hides the cost. Missing the other deadline without warning is poor. Abandoning the task halfway is worst."},
+
+  {c:"adapt",s:"Halfway through a project, the client changes priorities, and half your analysis is no longer needed.",
+   o:["Finish the original analysis anyway, since you started it.","Ask your manager how to refocus, and keep what's reusable.","Stop working until the new plan is fully clear.","Complain that the client keeps changing its mind."],
+   k:[1,2,0,3],w:"Adapt quickly and save what you can. Pausing is better than continuing on work nobody needs. Finishing it anyway wastes time. Complaining is worst."},
+  {c:"adapt",s:"You're staffed on a project in an industry you know nothing about. It starts Monday.",
+   o:["Read industry primers and the client's annual report over the weekend.","Ask the manager for a short briefing and which documents to read first.","Wait and learn on the job.","Ask to be moved to a project you know better."],
+   k:[1,0,2,3],w:"A targeted briefing gets you up to speed fastest. Reading on your own is good too. Waiting puts you behind on day one. Asking to move off is weakest."},
+  {c:"adapt",s:"A tool you rely on breaks the day before a deadline.",
+   o:["Tell your senior right away and suggest a workaround, like doing the key part manually.","Spend the day trying to fix the tool yourself.","Wait for IT to fix it.","Tell your senior the deadline will be missed."],
+   k:[0,3,1,2],w:"Raise it early with a plan. Telling your senior early but without options is still useful. Trying to fix it alone burns the day. Waiting on IT is weakest."},
+  {c:"adapt",s:"Your manager asks you to lead a client call next week. You've never done it before.",
+   o:["Decline; you're not ready.","Accept, prepare an agenda, and ask the manager for feedback on your plan beforehand.","Accept and wing it.","Accept, but ask the manager to do most of the talking."],
+   k:[1,3,0,2],w:"Take the stretch and prepare for it. Leaning on the manager is safe but limits the growth. Declining misses the chance. Winging a client call is worst."},
+  {c:"adapt",s:"Your team switches to a new way of working that you think is less efficient.",
+   o:["Keep using the old way.","Give the new way a fair try, note specific problems, and share them constructively.","Follow it but complain to teammates.","Ask to move to a different team."],
+   k:[1,2,0,3],w:"Try it, then improve it with evidence. Following it while complaining is unhelpful. Refusing to change splits the team. Asking to move is an overreaction."},
+  {c:"adapt",s:"You get an assignment with almost no instructions, and your senior is on vacation.",
+   o:["Look at similar past work, make a plan with clear assumptions, and check it with someone available.","Wait until the senior is back.","Do it your own way without checking with anyone.","Ask the manager to explain everything step by step."],
+   k:[0,3,2,1],w:"Use what exists, state assumptions, and get a quick check. Asking the manager works but uses a lot of their time. Going solo risks rework. Waiting a week is weakest."},
+
+  {c:"learn",s:"In your review, your manager says your work is accurate but your emails are too long.",
+   o:["Explain that detail is important.","Thank them, ask for an example of a good email, and try a shorter format.","Agree, but keep writing the same way.","Ask a teammate whether they agree with the manager."],
+   k:[1,3,0,2],w:"Take the feedback and act on it. Checking with a teammate is fine but delays acting. Defending yourself closes the conversation. Agreeing and changing nothing is worst."},
+  {c:"learn",s:"A colleague newer than you points out an error in your work in front of the team.",
+   o:["Thank them, fix it, and move on.","Point out an error in their work.","Explain why it isn't really an error.","Thank them, then privately ask that they raise things one-on-one next time."],
+   k:[0,3,2,1],w:"Accept the catch gracefully. A private request is reasonable but less important than the fix. Arguing it isn't an error looks defensive. Retaliating is worst."},
+  {c:"learn",s:"You haven't received any feedback in three months.",
+   o:["Assume everything is fine.","Ask your senior for 15 minutes on what's going well and what to improve.","Wait for your annual review.","Ask teammates what they think of your work."],
+   k:[1,3,2,0],w:"Ask for it directly. Teammates' views help but aren't your senior's. Waiting for the review loses months. Assuming all is fine is weakest."},
+  {c:"learn",s:"You were passed over for a project you really wanted.",
+   o:["Ask the manager what would make you a stronger candidate next time.","Tell colleagues it was unfair.","Accept it and say nothing.","Ask to be added to the project anyway."],
+   k:[0,2,3,1],w:"Turn it into a development conversation. Accepting it is professional but passive. Pushing to be added anyway ignores the decision. Complaining to colleagues is worst."},
+  {c:"learn",s:"You finish a project, and it went well.",
+   o:["Move straight on to the next one.","Write down what worked and what you'd change, and share one lesson with the team.","Ask for a promotion.","Ask your senior for feedback on your part."],
+   k:[1,3,0,2],w:"Capture and share the lessons. Asking for feedback is also strong. Moving straight on loses the lessons. Asking for a promotion after one project is premature."},
+  {c:"learn",s:"A senior gives you feedback that contradicts what another senior told you last week.",
+   o:["Follow the most recent feedback.","Ask both, ideally together, which approach they want for this deliverable.","Follow the feedback from the more senior person.","Ignore both and do what you think is best."],
+   k:[1,2,0,3],w:"Resolve the conflict openly. Following seniority is a reasonable tiebreak. Following the latest is arbitrary. Ignoring both is worst."},
+  ];
+
+  const PAGEKEY="sjt";
+  const FMT={
+    top2:{need:2,labels:["1st","2nd"],ins:"Pick the most effective response, then the second most effective.",hint:"Pick the best response, then the second best. Like the two-in-order format many firms use.",max:4},
+    rank:{need:4,labels:["1","2","3","4"],ins:"Rank all four, from most effective (1) to least effective (4).",hint:"Click the responses in order, from most to least effective.",max:12},
+    ml:{need:2,labels:["Most","Least"],ins:"Pick the most effective response, then the least effective.",hint:"Pick the best response first, then the worst.",max:4}};
+  const store={get(k){try{return JSON.parse(localStorage.getItem("sjt-"+k));}catch(e){return null;}},set(k,v){try{localStorage.setItem("sjt-"+k,JSON.stringify(v));}catch(e){}}};
+  const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+  const mmss=s=>{const t=Math.round(s);return Math.floor(t/60)+":"+String(t%60).padStart(2,"0");};
+  const esc=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+  /* ---------- setup ---------- */
+  let cfg={fmt:"top2",len:"all",mode:"test",comp:"integ"},st=null,tick=null;
+  const compSel=$("#sj-comp");
+  compSel.innerHTML=Object.entries(COMPS).map(([k,v])=>`<option value="${k}">${v}</option>`).join("");
+  function seg(attr,key){$$(`[data-${attr}]`).forEach(b=>b.addEventListener("click",()=>{
+    $$(`[data-${attr}]`).forEach(x=>x.setAttribute("aria-pressed",String(x===b)));cfg[key]=b.dataset[attr];
+    if(key==="len")compSel.hidden=cfg.len!=="comp";if(key==="fmt")$("#sj-fmthint").textContent=FMT[cfg.fmt].hint;}));}
+  seg("fmt","fmt");seg("len","len");seg("mode","mode");
+  compSel.addEventListener("change",()=>cfg.comp=compSel.value);
+  $("#sj-fmthint").textContent=FMT.top2.hint;
+  function lastLine(){const h=store.get("hist");$("#sj-last").textContent=h&&h.length?`Last score: ${h[0].pct}% (${h[0].band})`:"";}
+  lastLine();
+
+  function pickItems(){
+    const all=ITEMS.map((it,i)=>i);
+    if(cfg.len==="comp")return shuffle(all.filter(i=>ITEMS[i].c===cfg.comp));
+    if(cfg.len==="quick"){const by={};shuffle(all).forEach(i=>(by[ITEMS[i].c]=by[ITEMS[i].c]||[]).push(i));
+      const out=[],keys=shuffle(Object.keys(by));while(out.length<20){keys.forEach(k=>{if(out.length<20&&by[k].length)out.push(by[k].pop());});}return shuffle(out);}
+    return shuffle(all);}
+
+  function start(){
+    st={fmt:cfg.fmt,mode:cfg.mode,len:cfg.len,comp:cfg.comp,q:pickItems().map(i=>({i,order:shuffle([0,1,2,3]),picks:[],pts:null})),n:0,t0:Date.now(),checked:false};
+    $("#sj-setup").hidden=true;$("#sj-q").hidden=false;
+    clearInterval(tick);tick=setInterval(()=>{$("#sj-time").textContent=mmss((Date.now()-st.t0)/1000);},1000);
+    render();$("#sj-q").scrollIntoView({block:"start"});}
+  $("#sj-go").addEventListener("click",start);
+
+  /* ---------- scoring ---------- */
+  function score(q,fmt){const k=ITEMS[q.i].k,r=o=>k.indexOf(o);
+    if(fmt==="top2")return q.picks.reduce((s,o,slot)=>s+Math.max(0,2-Math.abs(slot-r(o))),0);
+    if(fmt==="rank")return q.picks.reduce((s,o,slot)=>s+Math.max(0,3-Math.abs(slot-r(o))),0);
+    const m=r(q.picks[0]),l=r(q.picks[1]);return (m===0?2:m===1?1:0)+(l===3?2:l===2?1:0);}
+
+  /* ---------- question ---------- */
+  function render(){
+    const q=st.q[st.n],it=ITEMS[q.i],F=FMT[st.fmt];st.checked=false;
+    $("#sj-count").textContent=`Scenario ${st.n+1} of ${st.q.length}`;
+    $("#sj-prog").style.width=(st.n/st.q.length*100)+"%";
+    const tag=$("#sj-tag");tag.hidden=st.mode!=="practice";tag.textContent=COMPS[it.c];
+    $("#sj-s").textContent=it.s;$("#sj-ins").textContent=F.ins;$("#sj-fb").hidden=true;
+    $("#sj-opts").innerHTML=q.order.map((o,p)=>`<button class="sjopt" type="button" data-o="${o}" aria-pressed="false" data-say="${"ABCD"[p]}. ${esc(it.o[o])}"><span class="L">${"ABCD"[p]}</span><span class="x">${esc(it.o[o])}</span></button>`).join("");
+    $$("#sj-opts .sjopt").forEach(b=>b.addEventListener("click",()=>pick(+b.dataset.o)));
+    $("#sj-clear").disabled=false;paint();}
+  function pick(o){if(st.checked)return;const q=st.q[st.n],F=FMT[st.fmt],at=q.picks.indexOf(o);
+    if(at>=0)q.picks.splice(at,1);else if(q.picks.length<F.need)q.picks.push(o);
+    if(st.fmt==="rank"&&q.picks.length===3)q.picks.push([0,1,2,3].find(x=>!q.picks.includes(x)));
+    paint();}
+  function paint(){const q=st.q[st.n],F=FMT[st.fmt],done=q.picks.length===F.need;
+    $$("#sj-opts .sjopt").forEach(b=>{const o=+b.dataset.o,at=q.picks.indexOf(o);
+      b.classList.toggle("on",at>=0);b.setAttribute("aria-pressed",String(at>=0));
+      let bd=$(".bd",b);if(at>=0){if(!bd){bd=document.createElement("span");bd.className="bd";b.appendChild(bd);}bd.textContent=F.labels[at];}else if(bd)bd.remove();});
+    const nx=$("#sj-next");nx.disabled=!done;const last=st.n===st.q.length-1;
+    nx.textContent=st.mode==="practice"&&!st.checked?"Check answer":last?"See results":"Next";}
+  $("#sj-clear").addEventListener("click",()=>{if(st.checked)return;st.q[st.n].picks=[];paint();});
+  $("#sj-next").addEventListener("click",()=>{const q=st.q[st.n];
+    if(st.mode==="practice"&&!st.checked){q.pts=score(q,st.fmt);st.checked=true;
+      $$("#sj-opts .sjopt").forEach(b=>b.disabled=true);$("#sj-clear").disabled=true;
+      const fb=$("#sj-fb");fb.innerHTML=feedback(q,st.fmt);fb.hidden=false;paint();return;}
+    q.pts=score(q,st.fmt);
+    if(st.n<st.q.length-1){st.n++;render();$("#sj-q").scrollIntoView({block:"start"});}else finish();});
+  $("#sj-quit").addEventListener("click",()=>{if(st.q.some(q=>q.pts!==null))finish(true);else{clearInterval(tick);$("#sj-q").hidden=true;$("#sj-setup").hidden=false;}});
+
+  function feedback(q,fmt){const it=ITEMS[q.i],F=FMT[fmt],max=F.max;
+    const rows=it.k.map((o,r)=>{const at=q.picks.indexOf(o);return `<li>${esc(it.o[o])}${at>=0?` <span class="you">you: ${F.labels[at]}</span>`:""}</li>`;}).join("");
+    return `<p class="sjpts">${q.pts} / ${max} points</p><p class="sjlbl" style="margin:8px 0 0">Expert ranking, most to least effective</p><ol>${rows}</ol><p style="margin:0">${esc(it.w)}</p>`;}
+
+  /* ---------- results ---------- */
+  const BANDS=[[85,"Strong","Your choices line up closely with how professional services firms want first-years to act."],
+    [70,"Competitive","A solid result. Review the points you lost below; most come from the middle rankings."],
+    [55,"Borderline","Focus on the competencies at the bottom of the chart, then retake in practice mode."],
+    [0,"Needs practice","Read the rules of thumb at the top, then retake in practice mode to see the reasoning after each scenario."]];
+  let revMode="miss";
+  function finish(early){clearInterval(tick);
+    const qs=st.q.filter(q=>q.pts!==null),F=FMT[st.fmt],max=qs.length*F.max,got=qs.reduce((s,q)=>s+q.pts,0),pct=max?Math.round(got/max*100):0;
+    const band=BANDS.find(b=>pct>=b[0]),secs=(Date.now()-st.t0)/1000;
+    st.result={qs,pct,band};
+    $("#sj-q").hidden=true;$("#sj-setup").hidden=false;$("#sj-none").hidden=true;$("#sj-res").hidden=false;
+    $("#sj-pct").textContent=pct+"%";$("#sj-band").textContent=band[1];
+    $("#sj-bandtxt").textContent=band[2]+(early?" (Test ended early: only answered scenarios are scored.)":"")+" This is practice scoring, not a prediction of any firm's result.";
+    $("#sj-pts").textContent=`${got} / ${max}`;$("#sj-n").textContent=qs.length;$("#sj-avg").textContent=qs.length?mmss(secs/qs.length):"–";
+    const by={};qs.forEach(q=>{const c=ITEMS[q.i].c;by[c]=by[c]||{g:0,m:0,n:0};by[c].g+=q.pts;by[c].m+=F.max;by[c].n++;});
+    const rows=Object.keys(COMPS).filter(c=>by[c]).map(c=>({c,p:Math.round(by[c].g/by[c].m*100),n:by[c].n})).sort((a,b)=>b.p-a.p);
+    const box=$("#sj-comps");box.innerHTML="";
+    hbar(box,rows.map(r=>({d:COMPS[r.c],t:`${r.n} scenario${r.n>1?"s":""}`,v:r.p,lab:r.p+"%"})),{max:115,ticks:[0,25,50,75,100],tick:v=>v+"%"});
+    $("#sj-compnote").textContent=rows.length>1?`Strongest: ${COMPS[rows[0].c]}. Most room to grow: ${COMPS[rows[rows.length-1].c]}.`:"";
+    drawReview();
+    const h=store.get("hist")||[];h.unshift({d:new Date().toLocaleDateString(undefined,{month:"short",day:"numeric"}),pct,band:band[1],n:qs.length,f:st.fmt});store.set("hist",h.slice(0,8));
+    drawHist();lastLine();
+    $("#results").scrollIntoView({block:"start"});}
+  function drawReview(){const r=st&&st.result;if(!r)return;const F=FMT[st.fmt];
+    const list=r.qs.filter(q=>revMode==="all"||q.pts<F.max);
+    $("#sj-rev").innerHTML=list.length?list.map(q=>`<li><div class="top"><span class="sjtag">${COMPS[ITEMS[q.i].c]}</span><span class="sjpts">${q.pts} / ${F.max}</span></div><p class="sc">${esc(ITEMS[q.i].s)}</p>${feedback(q,st.fmt).replace(/^<p class="sjpts">[^<]*<\/p>/,"")}</li>`).join(""):`<li>No points lost. Nice work.</li>`;}
+  $$("[data-rev]").forEach(b=>b.addEventListener("click",()=>{$$("[data-rev]").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));revMode=b.dataset.rev;drawReview();}));
+  function drawHist(){const h=store.get("hist")||[];const names={top2:"top two",rank:"rank all",ml:"most/least"};
+    $("#sj-hist").innerHTML=h.length?h.map(x=>`<li>${esc(x.d)} · ${x.pct}% · ${esc(x.band)} · ${x.n} scenarios · ${names[x.f]||""}</li>`).join(""):"<li>None yet.</li>";}
+  drawHist();
+  $("#sj-retake").addEventListener("click",()=>{Object.assign(cfg,{fmt:st.fmt,mode:st.mode,len:st.len,comp:st.comp});start();});
+  $("#sj-new").addEventListener("click",()=>{$("#sj-setup").scrollIntoView({block:"start"});});
+
+  /* ---------- read aloud, with a voice menu ---------- */
+  const synth=window.speechSynthesis,rateSel=$("#rate"),vSel=$("#voicePick");
+  try{const r=localStorage.getItem(PAGEKEY+"-rate");if(r)rateSel.value=r;}catch(e){}
+  rateSel.addEventListener("change",()=>{try{localStorage.setItem(PAGEKEY+"-rate",rateSel.value);}catch(e){}});
+  let speakingBtn=null,voice=null,voices=[];
+  const vrank=v=>(/natural|neural/i.test(v.name)?0:/premium/i.test(v.name)?1:/enhanced/i.test(v.name)?2:/google/i.test(v.name)?3:4)+(/^en[-_]US/i.test(v.lang)?0:.5);
+  function loadVoices(){
+    if(!synth)return;
+    voices=synth.getVoices().filter(v=>/^en/i.test(v.lang)).sort((a,b)=>vrank(a)-vrank(b)||a.name.localeCompare(b.name));
+    if(!vSel)return;
+    let saved=null;try{saved=localStorage.getItem(PAGEKEY+"-voice");}catch(e){}
+    vSel.innerHTML=voices.length?voices.map((v,i)=>`<option value="${i}">${v.name.replace(/[<>&"]/g,"")}${vrank(v)<2?" (natural)":""}</option>`).join(""):'<option value="">Browser default</option>';
+    let idx=voices.findIndex(v=>v.name===saved);if(idx<0)idx=0;
+    if(voices.length)vSel.value=String(idx);voice=voices[idx]||null;
+  }
+  if(vSel)vSel.addEventListener("change",()=>{voice=voices[+vSel.value]||null;try{localStorage.setItem(PAGEKEY+"-voice",voice?voice.name:"");}catch(e){}});
+  loadVoices();
+  if(synth&&"onvoiceschanged" in synth)synth.addEventListener("voiceschanged",loadVoices);
+  function textOf(el){return(el.getAttribute("data-say")||el.innerText||"").replace(/\s+/g," ").trim();}
+  function visible(el){return!!(el.offsetWidth||el.offsetHeight||el.getClientRects().length);}
+  function stop(){if(synth)synth.cancel();if(speakingBtn){speakingBtn.textContent=speakingBtn.dataset.label;speakingBtn.setAttribute("aria-pressed","false");speakingBtn=null;}}
+  function speakChunks(btn,chunks){
+    if(!synth||!chunks.length)return;
+    if(speakingBtn===btn){stop();return;}
+    stop();
+    speakingBtn=btn;btn.dataset.label=btn.dataset.label||btn.textContent;btn.textContent="Stop";btn.setAttribute("aria-pressed","true");
+    chunks.forEach((c,i)=>{const u=new SpeechSynthesisUtterance(c);u.rate=+rateSel.value;if(voice){u.voice=voice;u.lang=voice.lang;}else u.lang="en-US";
+      if(i===chunks.length-1)u.onend=()=>{if(speakingBtn===btn)stop();};synth.speak(u);});
+  }
+  function speak(btn,els){const chunks=[];els.filter(visible).forEach(el=>{textOf(el).split(/(?<=[.?!])\s+(?=[A-Z0-9"“])/).forEach(c=>{if(c)chunks.push(c);});});speakChunks(btn,chunks);}
+  if(!synth){$$(".listen,.qlisten").forEach(b=>b.hidden=true);$(".speed").hidden=true;const vb=$(".voicebar");if(vb)vb.hidden=true;}
+  else{
+    $$(".listen").forEach(b=>{b.dataset.label=b.textContent;b.addEventListener("click",()=>{const sec=b.closest("section");speak(b,$$("[data-say]",sec).filter(el=>!el.parentElement.closest("[data-say]")));});});
+    document.addEventListener("click",e=>{const b=e.target.closest(".qlisten");if(!b)return;const mc=b.closest(".mc");speak(b,$$("[data-say]",mc).filter(el=>!el.parentElement.closest("[data-say]")));});
+    const vt=$("#voiceTest");if(vt){vt.dataset.label=vt.textContent;vt.addEventListener("click",()=>speakChunks(vt,["Hi. This is how I'll read your case.","Pick another voice if this one sounds robotic."]));}
+  }
+  /* ---------- rail highlight ---------- */
+  const chips=$$("#chips a"),map=new Map(chips.map(a=>[a.getAttribute("href").slice(1),a]));
+  if("IntersectionObserver" in window){
+    const io=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){chips.forEach(c=>c.classList.remove("on"));const a=map.get(en.target.id);if(a){a.classList.add("on");const p=a.parentElement;p.scrollTo({left:a.offsetLeft-p.clientWidth/2+a.offsetWidth/2,behavior:"smooth"});}}});},{rootMargin:"-45% 0px -50% 0px"});
+    $$("section.step").forEach(s=>io.observe(s));
+  }
+})();
+</script>
+</body></html>
