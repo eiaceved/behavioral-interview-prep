@@ -427,10 +427,15 @@ footer{padding-block:40px 64px;border-top:1px solid var(--line);font-size:14px;c
 </header>
 
 <div class="wrap">
+<section class="step" id="about">
+  <div class="sh"><span class="idx">01</span><h2>What this site is</h2><button class="btn small listen" type="button">Listen</button></div>
+  <p class="def" data-say>This site is a free practice tool for the hiring round most people see after they apply: situational judgment tests and behavioral questions in the style professional services firms use. It has a 50-scenario practice test with a score broken down by competency, a guide to what firms look for, and worked answers for the classic behavioral questions. Nothing here is an actual firm's test or scoring; everything is written for practice, and it's free, with no sign-up.</p>
+</section>
+
 
 <!-- 01 HOW IT WORKS -->
 <section class="step" id="how">
-  <div class="sh"><span class="idx">01</span><h2>How these tests work</h2><button class="btn small listen" type="button">Listen</button></div>
+  <div class="sh"><span class="idx">02</span><h2>How these tests work</h2><button class="btn small listen" type="button">Listen</button></div>
   <p class="def" data-say>A situational judgment test shows you a realistic work scenario and several possible responses. You judge which responses are most and least effective. There's no trick or right personality; firms compare your choices with how their best people would act, based on the firm's values.</p>
   <div class="split">
     <div class="panel">
@@ -467,7 +472,7 @@ footer{padding-block:40px 64px;border-top:1px solid var(--line);font-size:14px;c
 
 <!-- 02 TEST -->
 <section class="step" id="test">
-  <div class="sh"><span class="idx">02</span><h2>Take the test</h2></div>
+  <div class="sh"><span class="idx">03</span><h2>Take the test</h2></div>
   <div class="sjcard" id="sj-setup">
     <div class="sjgroup">
       <p class="sjlbl">Format</p>
@@ -520,7 +525,7 @@ footer{padding-block:40px 64px;border-top:1px solid var(--line);font-size:14px;c
 
 <!-- 03 RESULTS -->
 <section class="step" id="results">
-  <div class="sh"><span class="idx">03</span><h2>Results</h2></div>
+  <div class="sh"><span class="idx">04</span><h2>Results</h2></div>
   <p class="sub" id="sj-none">Finish a test to see your score here.</p>
   <div id="sj-res" hidden>
     <div class="sjcard">
@@ -556,7 +561,7 @@ footer{padding-block:40px 64px;border-top:1px solid var(--line);font-size:14px;c
 
 <!-- 04 TIPS -->
 <section class="step" id="tips">
-  <div class="sh"><span class="idx">04</span><h2>What firms look for</h2><button class="btn small listen" type="button">Listen</button></div>
+  <div class="sh"><span class="idx">05</span><h2>What firms look for</h2><button class="btn small listen" type="button">Listen</button></div>
   <p class="sub" data-say>The eight competencies this test scores, what strong looks like, and the trap for each.</p>
   <div class="vocab">
     <div class="term" data-say><b>Integrity and ethics</b><p>Strong: accurate records, protected client data, mistakes disclosed through your team. Trap: going along with a "small" shortcut because someone senior said so.</p></div>
@@ -564,14 +569,14 @@ footer{padding-block:40px 64px;border-top:1px solid var(--line);font-size:14px;c
     <div class="term" data-say><b>Teamwork and inclusion</b><p>Strong: helps teammates first, gives credit, brings in quieter voices. Trap: going straight over someone's head.</p></div>
     <div class="term" data-say><b>Ownership and drive</b><p>Strong: owns mistakes, flags risks early with a plan, offers spare time. Trap: hoping a problem fixes itself.</p></div>
     <div class="term" data-say><b>Communication</b><p>Strong: clarifies vague asks, leads with the answer, tries another channel when stuck. Trap: guessing silently.</p></div>
-    <div class="term" data-say><b>Prioritizing and time</b><p>Strong: makes trade-offs visible and lets the right person decide. Trap: quietly dropping one task or working all night instead of speaking up.</p></div>
+    <div class="term" data-say><b>Prioritizing and time Management</b><p>Strong: makes trade-offs visible and lets the right person decide. Trap: quietly dropping one task or working all night instead of speaking up.</p></div>
     <div class="term" data-say><b>Adaptability</b><p>Strong: refocuses fast when plans change and takes on stretch work with preparation. Trap: waiting for perfect clarity.</p></div>
     <div class="term" data-say><b>Learning and feedback</b><p>Strong: thanks people for feedback and acts on it, and asks for it when it's missing. Trap: defending or explaining instead of listening.</p></div>
   </div>
 </section>
 
 <section class="step" id="behavioral">
-  <div class="sh"><span class="idx">05</span><h2>Behavioral round</h2><button class="btn small listen" type="button">Listen</button></div>
+  <div class="sh"><span class="idx">06</span><h2>Behavioral round</h2><button class="btn small listen" type="button">Listen</button></div>
   <p class="def" data-say>The behavioral round is a conversation, not a test. Every question maps to a competency the firm is screening: ownership, teamwork, communication, resilience. Your job is one specific story told in a fixed shape, then stop. Use CARL: one sentence of context, what you did, a result you can point to, and the learning. About ninety seconds, then let them pull the thread.</p>
   <div class="split">
     <div class="panel">
@@ -790,7 +795,7 @@ footer{padding-block:40px 64px;border-top:1px solid var(--line);font-size:14px;c
 
   const COMPS={
     integ:"Integrity and ethics",client:"Client focus",team:"Teamwork and inclusion",own:"Ownership and drive",
-    comm:"Communication",prio:"Prioritizing and time",adapt:"Adaptability",learn:"Learning and feedback"};
+    comm:"Communication",prio:"Prioritizing and time Management",adapt:"Adaptability",learn:"Learning and feedback"};
   /* k = option indexes from most to least effective */
   const ITEMS=[
   {c:"integ",s:"While preparing this month's client report, you notice a number in last month's report, already sent to the client, was wrong. The error is small, and your senior says nobody will notice.",
