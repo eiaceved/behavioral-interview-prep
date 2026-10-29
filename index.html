@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}.listenbox{margin:14px 0 10px;padding:14px 18px;border:1px solid #d4dce0;border-radius:12px;background:#fff;max-width:680px}.listenbox strong{font-family:Archivo,sans-serif;font-size:14px;color:#0d6b61}.listenbox audio{display:block;width:100%;margin-top:8px}
+<!doctype html><html><head><meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
 .mcards{margin:14px 0 4px}
 .mcard{background:var(--surface,#fff);border:1px solid var(--line,#d4dce0);border-radius:12px;padding:14px 18px;max-width:680px;margin:0 0 12px;cursor:pointer;user-select:none;-webkit-user-select:none;transition:box-shadow .18s ease,transform .18s ease}
 .mcard:hover{box-shadow:0 5px 16px rgba(13,107,97,.16);transform:translateY(-1px)}
@@ -402,6 +402,13 @@ footer{padding-block:40px 64px;border-top:1px solid var(--line);font-size:14px;c
 .sjhist{list-style:none;padding:0;margin:8px 0 0;font:500 13px var(--mono);color:var(--fg-2)}
 .sjhist li{padding:4px 0;border-bottom:1px solid var(--grid)}
 @media (max-width:600px){.sjcard{padding:16px}.sjs{font-size:17px}.sjstats .v{font-size:17px}.sjbig{font-size:52px}}
+
+/* bottom-right voice player, same look as the case pages */
+.tts-bar{position:fixed;right:16px;bottom:16px;z-index:99998;display:flex;align-items:center;gap:8px;background:#13202a;color:#e5ecef;border:1px solid #29343a;border-radius:12px;padding:8px 10px;box-shadow:0 6px 24px rgba(0,0,0,.35);font:13px -apple-system,system-ui,sans-serif;max-width:calc(100vw - 32px)}
+.tts-bar button{border:0;border-radius:8px;padding:7px 12px;font:600 13px -apple-system,system-ui,sans-serif;cursor:pointer;background:#4cc2b1;color:#06201c}
+.tts-bar button.ghost{background:#1b252a;color:#e5ecef;border:1px solid #29343a}
+.tts-bar input[type=range]{width:240px;max-width:38vw;accent-color:#4cc2b1;cursor:pointer}
+@media (max-width:560px){.tts-bar input[type=range]{width:130px}}
 </style>
 
 <nav class="rail" aria-label="Sections">
@@ -640,7 +647,7 @@ footer{padding-block:40px 64px;border-top:1px solid var(--line);font-size:14px;c
 </section>
 
 </div>
-  <div class="listenbox"><strong>Listen to this page</strong><audio controls preload="none" src="audio/behavioral-prep.mp3"></audio></div>\n</main>
+  </main>
 
 <footer>
   <div class="wrap">
@@ -1088,5 +1095,26 @@ document.querySelectorAll('.mcard').forEach(function(c){
   c.addEventListener('click',t);
   c.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}});
 });
+</script>
+<div class="tts-bar" id="tts-bar">
+  <button id="tts-play" title="Play the recorded walkthrough">▶ Read</button>
+  <button id="tts-stop" class="ghost" title="Stop">■</button>
+  <input id="tts-seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Voice progress">
+</div>
+<script>
+(function(){
+  var audio=new Audio('audio/behavioral-prep.mp3');
+  audio.preload='none';
+  var play=document.getElementById('tts-play'),stop=document.getElementById('tts-stop'),seek=document.getElementById('tts-seek');
+  function setPlaying(on){play.textContent=on?'⏸ Pause':'▶ Read';}
+  play.addEventListener('click',function(){
+    if(audio.paused){audio.play();setPlaying(true);}else{audio.pause();setPlaying(false);}
+  });
+  stop.addEventListener('click',function(){audio.pause();audio.currentTime=0;setPlaying(false);});
+  audio.addEventListener('loadedmetadata',function(){try{seek.max=audio.duration;}catch(e){}});
+  audio.addEventListener('timeupdate',function(){try{seek.value=audio.currentTime;}catch(e){}});
+  seek.addEventListener('input',function(){try{audio.currentTime=parseFloat(seek.value);}catch(e){}});
+  audio.addEventListener('ended',function(){setPlaying(false);try{seek.value=0;}catch(e){}});
+})();
 </script>
 </body></html>
