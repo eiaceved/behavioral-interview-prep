@@ -1,4 +1,18 @@
 <!doctype html><html><head><meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}.listenbox{margin:14px 0 10px;padding:14px 18px;border:1px solid #d4dce0;border-radius:12px;background:#fff;max-width:680px}.listenbox strong{font-family:Archivo,sans-serif;font-size:14px;color:#0d6b61}.listenbox audio{display:block;width:100%;margin-top:8px}
+.mcards{margin:14px 0 4px}
+.mcard{background:var(--surface,#fff);border:1px solid var(--line,#d4dce0);border-radius:12px;padding:14px 18px;max-width:680px;margin:0 0 12px;cursor:pointer;user-select:none;-webkit-user-select:none;transition:box-shadow .18s ease,transform .18s ease}
+.mcard:hover{box-shadow:0 5px 16px rgba(13,107,97,.16);transform:translateY(-1px)}
+.mcard:focus-visible{outline:2px solid #0d6b61;outline-offset:2px}
+.mfront b,.mback>b{font-family:Archivo,sans-serif;font-size:15px;display:block;margin-bottom:8px}
+.mkey{display:inline-block;min-width:26px;text-align:center;font:700 12px/1 Archivo,sans-serif;color:#0d6b61;background:#e7f2f0;border:1px solid #bcd9d5;border-radius:8px;padding:6px 7px;margin:0 6px 6px 0}
+.mkey.mwide{min-width:0;padding:6px 10px}
+.mtap{display:block;margin-top:8px;font:600 10.5px -apple-system,BlinkMacSystemFont,sans-serif;letter-spacing:.07em;text-transform:uppercase;color:#8a939a}
+.mback{display:none}
+.mback p{margin:0;font-size:14px;line-height:1.55}
+.mback p b{color:#0d6b61}
+.mcard.open .mfront{display:none}
+.mcard.open .mback{display:block;animation:mflip .28s ease}
+@keyframes mflip{0%{transform:perspective(700px) rotateX(-75deg);opacity:.15}100%{transform:none;opacity:1}}
 </style></head><body>
 <title>Situational Judgment Test</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -595,13 +609,28 @@ footer{padding-block:40px 64px;border-top:1px solid var(--line);font-size:14px;c
     </div>
   </div>
   <p class="h-sec">Model answers: the frameworks in action</p>
-  <p class="def" data-say>Generic examples, not scripts, and not anyone\u2019s real story. Each one shows a framework in action: STAR (Situation, Task, Action, Result) or CARL (Context, Action, Result, Learning). Read how the parts stack, then build your own story the same way.</p>
-  <div class="vocab">
-    <div class="term" data-say><b>"Tell me about yourself."</b><p>Not a STAR story; it is your sixty-second reel. Three sentences: where you are now, the one thing you have done that you can talk about forever, and what you are aiming at next. Then stop and let them pick the thread.</p></div>
-    <div class="term" data-say><b>"A time you led a team." (Here\u2019s a STAR answer.)</b><p><b>S:</b> A four-person group project was drifting: the deadline was two weeks out and nobody owned the plan. <b>T:</b> Get five scattered ideas into one workable split everyone would actually keep. <b>A:</b> Mapped the deliverables, matched each to whoever had the most time that week, and set two short checkpoints instead of long meetings. <b>R:</b> We turned it in a day early and every part held together when the professor pressed on it.</p></div>
-    <div class="term" data-say><b>"A time you failed or missed something." (Here\u2019s a CARL answer.)</b><p><b>C:</b> In a part-time job I owned a weekly report the whole team relied on. <b>A:</b> One week I changed how I pulled the numbers without checking the template, and a manager caught two wrong figures before it went out. I owned it on the spot, fixed both, and wrote a one-page checklist so the steps could not drift again. <b>R:</b> The checklist was still in use when I left. <b>L:</b> A mistake costs the least when you surface it yourself, early.</p></div>
-    <div class="term" data-say><b>"A time you handled pressure or a difficult person." (Here\u2019s a STAR answer.)</b><p><b>S:</b> The busiest shift of the week, a customer escalating over a mistake, the supervisor tied up. <b>T:</b> Calm it down without promising anything beyond my role. <b>A:</b> Let them finish without interrupting, said back exactly what they were angry about, fixed what was in my control immediately, and flagged the rest to the supervisor with a suggestion. <b>R:</b> The customer left satisfied and came back the following week. People want to be heard before they want to be solved.</p></div>
-    <div class="term" data-say><b>"Why this firm? Why this practice?"</b><p>Have one honest reason that fits only that firm: a specific practice area, a person you met there, a type of problem you want to work on. One specific, honest detail beats three generic ones.</p></div>
+  <p class="def" data-say>Generic examples, not scripts, and not anyone\u2019s real story. Each card shows a framework in action: STAR (Situation, Task, Action, Result) or CARL (Context, Action, Result, Learning). Tap the question to flip it over and reveal the labeled answer; tap again to flip back.</p>
+  <div class="mcards">
+    <div class="mcard" tabindex="0" role="button" aria-expanded="false">
+      <div class="mfront"><b>"Tell me about yourself."</b><span class="mkey mwide">60-sec reel</span><span class="mtap">Tap to reveal</span></div>
+      <div class="mback"><b>"Tell me about yourself."</b><p>Not a STAR story; it is your sixty-second reel. Three sentences: where you are now, the one thing you have done that you can talk about forever, and what you are aiming at next. Then stop and let them pick the thread.</p><span class="mtap">Tap to flip back</span></div>
+    </div>
+    <div class="mcard" tabindex="0" role="button" aria-expanded="false">
+      <div class="mfront"><b>"A time you led a team."</b><span class="mkey">S</span><span class="mkey">T</span><span class="mkey">A</span><span class="mkey">R</span><span class="mtap">Tap to reveal</span></div>
+      <div class="mback"><b>"A time you led a team." Here\u2019s a STAR answer.</b><p><b>S:</b> A four-person group project was drifting: the deadline was two weeks out and nobody owned the plan. <b>T:</b> Get five scattered ideas into one workable split everyone would actually keep. <b>A:</b> Mapped the deliverables, matched each to whoever had the most time that week, and set two short checkpoints instead of long meetings. <b>R:</b> We turned it in a day early and every part held together when the professor pressed on it.</p><span class="mtap">Tap to flip back</span></div>
+    </div>
+    <div class="mcard" tabindex="0" role="button" aria-expanded="false">
+      <div class="mfront"><b>"A time you failed or missed something."</b><span class="mkey">C</span><span class="mkey">A</span><span class="mkey">R</span><span class="mkey">L</span><span class="mtap">Tap to reveal</span></div>
+      <div class="mback"><b>"A time you failed or missed something." Here\u2019s a CARL answer.</b><p><b>C:</b> In a part-time job I owned a weekly report the whole team relied on. <b>A:</b> One week I changed how I pulled the numbers without checking the template, and a manager caught two wrong figures before it went out. I owned it on the spot, fixed both, and wrote a one-page checklist so the steps could not drift again. <b>R:</b> The checklist was still in use when I left. <b>L:</b> A mistake costs the least when you surface it yourself, early.</p><span class="mtap">Tap to flip back</span></div>
+    </div>
+    <div class="mcard" tabindex="0" role="button" aria-expanded="false">
+      <div class="mfront"><b>"A time you handled pressure or a difficult person."</b><span class="mkey">S</span><span class="mkey">T</span><span class="mkey">A</span><span class="mkey">R</span><span class="mtap">Tap to reveal</span></div>
+      <div class="mback"><b>"A time you handled pressure or a difficult person." Here\u2019s a STAR answer.</b><p><b>S:</b> The busiest shift of the week, a customer escalating over a mistake, the supervisor tied up. <b>T:</b> Calm it down without promising anything beyond my role. <b>A:</b> Let them finish without interrupting, said back exactly what they were angry about, fixed what was in my control immediately, and flagged the rest to the supervisor with a suggestion. <b>R:</b> The customer left satisfied and came back the following week. People want to be heard before they want to be solved.</p><span class="mtap">Tap to flip back</span></div>
+    </div>
+    <div class="mcard" tabindex="0" role="button" aria-expanded="false">
+      <div class="mfront"><b>"Why this firm? Why this practice?"</b><span class="mkey mwide">One honest reason</span><span class="mtap">Tap to reveal</span></div>
+      <div class="mback"><b>"Why this firm? Why this practice?"</b><p>Have one honest reason that fits only that firm: a specific practice area, a person you met there, a type of problem you want to work on. One specific, honest detail beats three generic ones.</p><span class="mtap">Tap to flip back</span></div>
+    </div>
   </div>
     <p class="h-sec">Two questions to ask them</p>
   <div class="vocab">
@@ -1052,5 +1081,12 @@ footer{padding-block:40px 64px;border-top:1px solid var(--line);font-size:14px;c
     $$("section.step").forEach(s=>io.observe(s));
   }
 })();
+</script>
+<script>
+document.querySelectorAll('.mcard').forEach(function(c){
+  function t(){var o=c.classList.toggle('open');c.setAttribute('aria-expanded',o?'true':'false')}
+  c.addEventListener('click',t);
+  c.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}});
+});
 </script>
 </body></html>
